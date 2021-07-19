@@ -1,0 +1,6 @@
+{
+    "policy_groups": [
+        "camera"
+    ],
+    "policy_version": 16.04
+}

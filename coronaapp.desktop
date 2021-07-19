@@ -1,0 +1,7 @@
+[Desktop Entry]
+Name=Corona App
+Exec=coronaapp %U
+Icon=assets/logo.svg
+Terminal=false
+Type=Application
+X-Ubuntu-Touch=true

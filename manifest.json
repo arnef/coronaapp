@@ -1,0 +1,15 @@
+{
+    "name": "coronaapp.de.arnef",
+    "description": "Digitaler Impfausweis und check ins",
+    "architecture": "@CLICK_ARCH@",
+    "title": "Corona App",
+    "hooks": {
+        "coronaapp": {
+            "apparmor": "coronaapp.apparmor",
+            "desktop":  "coronaapp.desktop"
+        }
+    },
+    "version": "1.0.0",
+    "maintainer": "arnef <git@arnef.de>",
+    "framework" : "@CLICK_FRAMEWORK@"
+}

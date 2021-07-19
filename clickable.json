@@ -1,0 +1,14 @@
+{
+  "clickable_minimum_required": "6.22.0",
+  "builder": "go",
+  "kill": "coronaapp",
+  "qt_version": "5.12",
+  "image_setup": {
+    "run": [
+        "rm -rf /usr/include/QtCore",
+        "[ -d \"/usr/include/x86_64-linux-gnu\" ] && ln -fs /usr/include/x86_64-linux-gnu/qt5/QtCore/5.12.9/QtCore/ /usr/include/QtCore || exit 0",
+        "[ -d \"/usr/include/arm-linux-gnueabihf\" ] && ln -fs /usr/include/arm-linux-gnueabihf/qt5/QtCore/5.12.9/QtCore/ /usr/include/QtCore || exit 0",
+        "[ -d \"/usr/include/aarch64-linux-gnu\" ] && ln -fs /usr/include/aarch64-linux-gnu/qt5/QtCore/5.12.9/QtCore/ /usr/include/QtCore || exit 0"
+    ]
+  }
+}
