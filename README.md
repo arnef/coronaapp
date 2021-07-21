@@ -1,8 +1,10 @@
 # Corona App
 
+<img src="https://raw.githubusercontent.com/arnef/coronaapp/main/assets/logo.svg" width="120" />
 
-
-Digitaler Impfausweis
+- [x] Digitaler Impfausweis
+- [ ] Luca - check in
+- [ ] Corona Warn App - check in
 
 ## License
 
