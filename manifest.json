@@ -1,6 +1,6 @@
 {
     "name": "coronaapp.de.arnef",
-    "description": "Digitaler Impfausweis und check ins",
+    "description": "Digitaler Impfausweis",
     "architecture": "@CLICK_ARCH@",
     "title": "Corona App",
     "hooks": {

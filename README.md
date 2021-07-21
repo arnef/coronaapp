@@ -1,6 +1,8 @@
 # Corona App
 
-Digitaler Impfausweis und check ins
+
+
+Digitaler Impfausweis
 
 ## License
 

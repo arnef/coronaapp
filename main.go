@@ -17,14 +17,17 @@
 package main
 
 import (
-	"encoding/json"
 	"fmt"
-	"log"
 
-	"github.com/arnef/coronaapp/app/covidcert"
+	"github.com/arnef/coronaapp/app"
+	"github.com/arnef/coronaapp/app/provider"
+	"github.com/arnef/coronaapp/app/storage"
+	"github.com/arnef/coronaapp/app/utils"
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/qrcode"
 	"github.com/nanu-c/qml-go"
+
+	log "github.com/sirupsen/logrus"
 )
 
 func main() {
@@ -36,21 +39,40 @@ func main() {
 
 func run() error {
 	engine := qml.NewEngine()
+
 	component, err := engine.LoadFile("qml/Main.qml")
 	if err != nil {
 		return err
 	}
+	state := app.Init()
 
-	scanner := QRScanner{}
+	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
+	scanner := QRScanner{
+		reader: qrcode.NewQRCodeReader(),
+	}
 	context := engine.Context()
-	context.SetVar("testvar", &scanner)
-	// testvar.GetMessage()
+
+	context.SetVar("scanner", &scanner)
+	context.SetVar("myapp", &state)
 
 	win := component.CreateWindow(nil)
 
-	scanner.Root = win.Root()
+	state.Root = win.Root()
+
 	scanner.Win = win
-	// testvar.Root = win.Root()
+	scanner.Scanned = func(s string) {
+		log.Debugln("scanned", s)
+		cert, err := utils.CertFromString(s)
+
+		if err != nil {
+			log.Errorln(err)
+		} else {
+			storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
+			state.AppendCert(cert)
+		}
+
+	}
+
 	win.Show()
 	win.Wait()
 
@@ -61,33 +83,29 @@ type QRScanner struct {
 	Root      qml.Object
 	Win       *qml.Window
 	HasResult bool
-	Result    string
+	reader    gozxing.Reader
+	Scanned   func(string)
 }
 
 func (qr *QRScanner) Scan() {
-	fmt.Println("I Shoud scan")
+	log.Debugln("should scan")
 	if qr.Win != nil {
+		go func() {
+			log.Debugln("scan screen for qr")
+			img := qr.Win.Snapshot()
 
-		fmt.Println("scan screen for qr")
-		img := qr.Win.Snapshot()
+			// prepare BinaryBitmap
+			bmp, _ := gozxing.NewBinaryBitmapFromImage(img)
 
-		// prepare BinaryBitmap
-		bmp, _ := gozxing.NewBinaryBitmapFromImage(img)
-
-		// decode image
-		qrReader := qrcode.NewQRCodeReader()
-		result, _ := qrReader.Decode(bmp, nil)
-		if result != nil {
-			cert, err := covidcert.Decode(result.String())
-			if err == nil {
-				certJson, err := json.Marshal(cert)
-				if err == nil {
-					qr.HasResult = true
-					qr.Result = string(certJson)
-					qml.Changed(qr, &qr.HasResult)
-					qml.Changed(qr, &qr.Result)
-				}
+			// decode image
+			result, _ := qr.reader.Decode(bmp, nil)
+			if result != nil {
+				log.Debugln(result.GetBarcodeFormat())
+				qr.HasResult = true
+				qml.Changed(qr, &qr.HasResult)
+				qr.Scanned(result.String())
+				qr.HasResult = false
 			}
-		}
+		}()
 	}
 }
