@@ -67,8 +67,11 @@ func run() error {
 		if err != nil {
 			log.Errorln(err)
 		} else {
-			storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
-			state.AppendCert(cert)
+			// only allow vaccination certs for now
+			if len(cert.Cert.VaccineRecords) > 0 {
+				storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
+				state.AppendCert(cert)
+			}
 		}
 
 	}

@@ -83,6 +83,45 @@ type Cert struct {
 	VaccinationCerts *VaccinationCertList
 }
 
+func (c *Cert) Title() string {
+	if c.VaccinationCerts.Size > 0 {
+		v := c.VaccinationCerts.Get(0)
+		if v.Doses == v.DoseSeries {
+			return "Vollständiger Impfschutz"
+		}
+		if v.Doses < v.DoseSeries {
+			return "Unvollständiger Impfschutz"
+		}
+	}
+	return ""
+}
+
+func (c *Cert) Color() string {
+	if c.VaccinationCerts.Size > 0 {
+		v := c.VaccinationCerts.Get(0)
+		if v.Doses == v.DoseSeries {
+			return "#0560c4"
+		}
+		if v.Doses < v.DoseSeries {
+			return "#d2e7fe"
+		}
+	}
+	return "white"
+}
+
+func (c *Cert) Icon() string {
+	if c.VaccinationCerts.Size > 0 {
+		v := c.VaccinationCerts.Get(0)
+		if v.Doses == v.DoseSeries {
+			return "tick"
+		}
+		if v.Doses < v.DoseSeries {
+			return "close"
+		}
+	}
+	return ""
+}
+
 type VaccinationCertList struct {
 	Size  int
 	certs []*VaccinationCert

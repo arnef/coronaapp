@@ -2,13 +2,16 @@ import QtQuick 2.12
 import Ubuntu.Components 1.3
 
 Rectangle {
-    color: UbuntuColors.blue
+    color: cert.color()
     width: parent.width
     height: layout.implicitHeight
 
     signal select(var cert)
 
     property var cert
+
+    // a little dirty but it works for me
+    property var _textColor: cert.color() == "#d2e7fe" ? "black" : "white"
 
     TapHandler {
         onTapped: {
@@ -26,19 +29,19 @@ Rectangle {
             Icon {
                 width: units.gu(4)
                 height: units.gu(4)
-                name: "tick"
-                color: "white"
+                name: cert.icon()
+                color: _textColor
             }
             Column {
                 leftPadding: units.gu(2)
                 Label {
                     text: "Impfzertifikat"
                     textSize: Label.Large
-                    color: "white"
+                    color: _textColor
                 }
                 Label {
-                    text: "Vollständiger Impfschutz"
-                    color: "white"
+                    text: cert.title()
+                    color: _textColor
                 }
             }
         }
@@ -60,14 +63,14 @@ Rectangle {
             Label {
                 id: name
                 text: cert.givenName + " " + cert.familyName
-                color: "white"
+                color: _textColor
                 textSize: Label.Large
             }
             Icon {
                 anchors.right: parent.right
                 name: "go-next"
                 width: units.gu(2)
-                color: "white"
+                color: _textColor
             }
         }
     }
