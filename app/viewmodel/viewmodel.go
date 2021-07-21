@@ -31,6 +31,20 @@ func (c *CertList) CertID(cert *coronaqr.Decoded) (string, error) {
 	return fmt.Sprintf("%x", sha1.Sum(data)), nil
 }
 
+func (c *CertList) RemoveByID(id string) {
+	idx := -1
+	for i, c := range c.certs {
+		if c.ID == id {
+			idx = i
+			break
+		}
+	}
+	if idx > -1 {
+		c.certs = append(c.certs[:idx], c.certs[idx+1:]...)
+		c.Size = len(c.certs)
+	}
+}
+
 func (c *CertList) Append(cert *utils.CoronaCert) {
 	if !c.inList(cert.ID) {
 

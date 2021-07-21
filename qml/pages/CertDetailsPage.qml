@@ -1,6 +1,9 @@
 import QtQuick 2.12
 import Ubuntu.Components 1.3
+import Ubuntu.Components.Popups 1.3
 
+
+import "../components"
 
 Page {
     id: page
@@ -12,6 +15,25 @@ Page {
     header: PageHeader {
         id: header
         title: cert ? (cert.givenName + " " + cert.familyName) : ""
+        trailingActionBar {
+            numberOfSlots: 1
+            actions: [
+                Action {
+                    text: "Löschen"
+                    iconName: "delete"
+                    onTriggered: {
+                        var popup = PopupUtils.open(removeCertificate, root);
+                        popup.accepted.connect(function() {
+                            if (cert) {
+                                myapp.removeCert(cert.id)
+                                pageStack.removePages(page)
+                            }
+                        })
+
+                    }
+                }
+            ]
+        }
     }
 
     Column {
@@ -74,4 +96,9 @@ Page {
             }
         }
     }
+
+    RemoveDialog {
+        id: removeCertificate
+    }
+
 }

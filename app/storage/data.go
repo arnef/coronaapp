@@ -34,6 +34,15 @@ func WriteFile(filename string, data []byte) error {
 	return ioutil.WriteFile(path.Join(dir, filename), data, 0600)
 }
 
+func RmFile(filename string) error {
+	dir, err := UserConfigDir()
+	if err != nil {
+		log.Error(err)
+		return err
+	}
+	return os.Remove(path.Join(dir, filename))
+}
+
 func ReadFile(file string) ([]byte, error) {
 	dir, err := UserConfigDir()
 	if err != nil {
