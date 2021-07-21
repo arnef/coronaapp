@@ -2,6 +2,8 @@
 
 <img src="https://raw.githubusercontent.com/arnef/coronaapp/main/assets/logo.svg" width="120" />
 
+[![OpenStore](https://open-store.io/badges/en_US.png)](https://open-store.io/app/coronaapp.de.arnef)
+
 - [x] Digitaler Impfausweis
 - [ ] Luca - check in
 - [ ] Corona Warn App - check in
