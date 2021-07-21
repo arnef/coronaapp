@@ -9,7 +9,7 @@
             "desktop":  "coronaapp.desktop"
         }
     },
-    "version": "1.0.0",
+    "version": "1.0.1",
     "maintainer": "arnef <git@arnef.de>",
     "framework" : "@CLICK_FRAMEWORK@"
 }
