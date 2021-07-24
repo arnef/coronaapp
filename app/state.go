@@ -7,6 +7,8 @@ import (
 	"github.com/arnef/coronaapp/app/utils"
 	"github.com/arnef/coronaapp/app/viewmodel"
 	"github.com/nanu-c/qml-go"
+
+	log "github.com/sirupsen/logrus"
 )
 
 type State struct {
@@ -29,9 +31,13 @@ func Init() State {
 				data, err := storage.ReadFile(f)
 				if err == nil {
 					cert, err := utils.CertFromString((string(data)))
-					if err == nil {
-						state.Certs.Append(cert)
+					if err != nil {
+						log.Error(err)
+						continue
 					}
+
+					state.Certs.Append(cert)
+
 				}
 			}
 		}

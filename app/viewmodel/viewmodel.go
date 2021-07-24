@@ -4,9 +4,7 @@ import (
 	"crypto/sha1"
 	"encoding/json"
 	"fmt"
-	"strings"
 
-	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
 	"github.com/arnef/coronaapp/app/utils"
 	"github.com/stapelberg/coronaqr"
 )
@@ -50,30 +48,46 @@ func (c *CertList) Append(cert *utils.CoronaCert) {
 
 		viewmodelCert := &Cert{
 			ID:          cert.ID,
-			FamilyName:  cert.Cert.PersonalName.FamilyName,
-			GivenName:   cert.Cert.PersonalName.GivenName,
-			DateOfBirth: cert.Cert.DateOfBirth,
-			VaccinationCerts: &VaccinationCertList{
-				Size:  len(cert.Cert.VaccineRecords),
-				certs: make([]*VaccinationCert, len(cert.Cert.VaccineRecords)),
-			},
+			FamilyName:  cert.Name.FamilyName,
+			GivenName:   cert.Name.GivenName,
+			DateOfBirth: cert.BirthDateFormatted(),
+			vaccination: cert.Vaccination(),
+			recovery:    cert.Recovery(),
+			test:        cert.Test(),
+			// VaccinationCerts: &VaccinationCertList{
+			// 	Size:  len(cert.Cert.VaccineRecords),
+			// 	certs: make([]*VaccinationCert, len(cert.Cert.VaccineRecords)),
+			// },
+			// RecoveryCerts: &RecoveryCertList{
+			// 	Size:  len(cert.Cert.RecoveryRecords),
+			// 	certs: make([]*RecoveryCert, len(cert.Cert.RecoveryRecords)),
+			// },
 		}
 
-		for i, vac := range cert.Cert.VaccineRecords {
+		// for i, vac := range cert.Cert.VaccineRecords {
 
-			viewmodelCert.VaccinationCerts.certs[i] = &VaccinationCert{
-				VaccinatedOn:   vac.Date,
-				Doses:          int(vac.Doses),
-				DoseSeries:     int(vac.DoseSeries),
-				Target:         euvaluerepo.GetDiseaseValue(vac.Target),
-				MedicalProduct: euvaluerepo.GetMedicalValue(vac.Product),
-				Vaccine:        euvaluerepo.GetVaccineProphylaxisValue(vac.Vaccine),
-				Manufacturer:   euvaluerepo.GetManufacturerValue(vac.Manufacturer),
-				Country:        euvaluerepo.GetCountryValue(vac.Country),
-				Issuer:         vac.Issuer,
-				CertificateID:  strings.Replace(vac.CertificateID, "URN:UVCI:", "", 1),
-			}
-		}
+		// 	viewmodelCert.VaccinationCerts.certs[i] = &VaccinationCert{
+		// 		VaccinatedOn:   vac.Date,
+		// 		Doses:          int(vac.Doses),
+		// 		DoseSeries:     int(vac.DoseSeries),
+		// 		Target:         euvaluerepo.GetDiseaseValue(vac.Target),
+		// 		MedicalProduct: euvaluerepo.GetMedicalValue(vac.Product),
+		// 		Vaccine:        euvaluerepo.GetVaccineProphylaxisValue(vac.Vaccine),
+		// 		Manufacturer:   euvaluerepo.GetManufacturerValue(vac.Manufacturer),
+		// 		Country:        euvaluerepo.GetCountryValue(vac.Country),
+		// 		Issuer:         vac.Issuer,
+		// 		CertificateID:  strings.Replace(vac.CertificateID, "URN:UVCI:", "", 1),
+		// 	}
+		// }
+
+		// for i, rec := range cert.Cert.RecoveryRecords {
+		// 	viewmodelCert.RecoveryCerts.certs[i] = &RecoveryCert{
+		// 		Target:        euvaluerepo.GetDiseaseValue(rec.Target),
+		// 		Issuer:        rec.Issuer,
+		// 		Country:       euvaluerepo.GetCountryValue(rec.Country),
+		// 		CertificateID: rec.CertificateID,
+		// 	}
+		// }
 
 		c.certs = append(c.certs, viewmodelCert)
 		c.Size = len(c.certs)
@@ -87,53 +101,6 @@ func (c *CertList) inList(id string) bool {
 		}
 	}
 	return false
-}
-
-type Cert struct {
-	ID               string
-	FamilyName       string
-	GivenName        string
-	DateOfBirth      string
-	VaccinationCerts *VaccinationCertList
-}
-
-func (c *Cert) Title() string {
-	if c.VaccinationCerts.Size > 0 {
-		v := c.VaccinationCerts.Get(0)
-		if v.Doses == v.DoseSeries {
-			return "Vollständiger Impfschutz"
-		}
-		if v.Doses < v.DoseSeries {
-			return "Unvollständiger Impfschutz"
-		}
-	}
-	return ""
-}
-
-func (c *Cert) Color() string {
-	if c.VaccinationCerts.Size > 0 {
-		v := c.VaccinationCerts.Get(0)
-		if v.Doses == v.DoseSeries {
-			return "#0560c4"
-		}
-		if v.Doses < v.DoseSeries {
-			return "#d2e7fe"
-		}
-	}
-	return "white"
-}
-
-func (c *Cert) Icon() string {
-	if c.VaccinationCerts.Size > 0 {
-		v := c.VaccinationCerts.Get(0)
-		if v.Doses == v.DoseSeries {
-			return "tick"
-		}
-		if v.Doses < v.DoseSeries {
-			return "close"
-		}
-	}
-	return ""
 }
 
 type VaccinationCertList struct {
@@ -159,4 +126,23 @@ type VaccinationCert struct {
 	Country        string
 	Issuer         string
 	CertificateID  string
+}
+
+type RecoveryCert struct {
+	Target        string
+	Country       string
+	CertificateID string
+	Issuer        string
+}
+
+type RecoveryCertList struct {
+	Size  int
+	certs []*RecoveryCert
+}
+
+func (t *RecoveryCertList) Get(index int) *RecoveryCert {
+	if index < len(t.certs) {
+		return t.certs[index]
+	}
+	return nil
 }

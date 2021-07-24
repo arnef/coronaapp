@@ -20,7 +20,7 @@ Page {
         orientation: ListView.Horizontal
         anchors.top: header.bottom
         model: myapp.certs.size
-        
+        snapMode: ListView.SnapToItem
         delegate: Item {
             width: root.width
             CertItem {
