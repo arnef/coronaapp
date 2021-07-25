@@ -1,6 +1,8 @@
 package viewmodel
 
 import (
+	"strings"
+
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
 )
@@ -45,7 +47,7 @@ func testData(test *covpass.Test, rows []*DataRow) []*DataRow {
 		},
 		{
 			Title:    "Zertifikatkennung / Unique certificate identifier",
-			Subtitle: test.ID,
+			Subtitle: strings.TrimPrefix(test.ID, "URN:UVCI:"),
 		},
 	}...)
 }
