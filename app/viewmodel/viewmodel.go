@@ -54,41 +54,8 @@ func (c *CertList) Append(cert *utils.CoronaCert) {
 			vaccination: cert.Vaccination(),
 			recovery:    cert.Recovery(),
 			test:        cert.Test(),
-			// VaccinationCerts: &VaccinationCertList{
-			// 	Size:  len(cert.Cert.VaccineRecords),
-			// 	certs: make([]*VaccinationCert, len(cert.Cert.VaccineRecords)),
-			// },
-			// RecoveryCerts: &RecoveryCertList{
-			// 	Size:  len(cert.Cert.RecoveryRecords),
-			// 	certs: make([]*RecoveryCert, len(cert.Cert.RecoveryRecords)),
-			// },
 		}
-
-		// for i, vac := range cert.Cert.VaccineRecords {
-
-		// 	viewmodelCert.VaccinationCerts.certs[i] = &VaccinationCert{
-		// 		VaccinatedOn:   vac.Date,
-		// 		Doses:          int(vac.Doses),
-		// 		DoseSeries:     int(vac.DoseSeries),
-		// 		Target:         euvaluerepo.GetDiseaseValue(vac.Target),
-		// 		MedicalProduct: euvaluerepo.GetMedicalValue(vac.Product),
-		// 		Vaccine:        euvaluerepo.GetVaccineProphylaxisValue(vac.Vaccine),
-		// 		Manufacturer:   euvaluerepo.GetManufacturerValue(vac.Manufacturer),
-		// 		Country:        euvaluerepo.GetCountryValue(vac.Country),
-		// 		Issuer:         vac.Issuer,
-		// 		CertificateID:  strings.Replace(vac.CertificateID, "URN:UVCI:", "", 1),
-		// 	}
-		// }
-
-		// for i, rec := range cert.Cert.RecoveryRecords {
-		// 	viewmodelCert.RecoveryCerts.certs[i] = &RecoveryCert{
-		// 		Target:        euvaluerepo.GetDiseaseValue(rec.Target),
-		// 		Issuer:        rec.Issuer,
-		// 		Country:       euvaluerepo.GetCountryValue(rec.Country),
-		// 		CertificateID: rec.CertificateID,
-		// 	}
-		// }
-
+		viewmodelCert.GenerateData()
 		c.certs = append(c.certs, viewmodelCert)
 		c.Size = len(c.certs)
 	}

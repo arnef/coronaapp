@@ -11,9 +11,38 @@ type Cert struct {
 	FamilyName  string
 	GivenName   string
 	DateOfBirth string
+	Data        *DataRows
 	vaccination *covpass.Vaccination
 	recovery    *covpass.Recovery
 	test        *covpass.Test
+}
+
+func (c *Cert) GenerateData() {
+	rows := []*DataRow{
+		{
+			Title:    "Name, Vorname / Name, first name",
+			Subtitle: fmt.Sprintf("%s, %s", c.FamilyName, c.GivenName),
+		},
+		{
+			Title:    "Geburtstag / Date of birth (YYYY-MM-DD)",
+			Subtitle: c.DateOfBirth,
+		},
+	}
+
+	if c.vaccination != nil {
+		rows = vaccinationData(c.vaccination, rows)
+	}
+	if c.recovery != nil {
+		rows = recoveryData(c.recovery, rows)
+	}
+	if c.test != nil {
+		rows = testData(c.test, rows)
+	}
+
+	c.Data = &DataRows{
+		Size: len(rows),
+		Rows: rows,
+	}
 }
 
 func (c *Cert) Type() string {

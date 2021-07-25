@@ -18,7 +18,7 @@ type Test struct {
 	TestResult        string    `cbor:"tr"`
 	TestCentre        string    `cbor:"tc"`
 	Country           string    `cbor:"co"`
-	CertificateIssuer string    `cbor:"ci"`
+	CertificateIssuer string    `cbor:"is"`
 	ID                string    `cbor:"ci"`
 }
 
