@@ -20,7 +20,8 @@ Page {
         orientation: ListView.Horizontal
         anchors.top: header.bottom
         model: myapp.certs.size
-        
+        visible: myapp.certs.size > 0
+        snapMode: ListView.SnapOneItem
         delegate: Item {
             width: root.width
             CertItem {
@@ -30,5 +31,28 @@ Page {
                 cert: myapp.certs.get(index)
             }
         }            
+    }
+
+
+    Column {
+        anchors.centerIn: parent
+        anchors.verticalCenterOffset: - (header.height / 2)
+        width: parent.width
+        padding: units.gu(2)
+        spacing: units.gu(2)
+        visible: myapp.certs.size == 0
+        Image {
+            id: icon
+            source: "../../assets/no_certs.svg"
+            width: units.gu(6)
+            height: icon.width
+            anchors.horizontalCenter: parent.horizontalCenter
+        }
+        Label {
+            width: parent.width - units.gu(4)
+            text: "Du hast aktuell kein digitales COVID-Zertifikat der EU gespeichert."
+            wrapMode: Text.WordWrap
+            horizontalAlignment: Text.AlignHCenter
+        }
     }
 }

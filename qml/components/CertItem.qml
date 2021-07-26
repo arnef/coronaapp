@@ -16,7 +16,7 @@ Rectangle {
     TapHandler {
         onTapped: {
             select(cert);
-            console.log("open cert details", cert.vaccinationCerts.size);
+            // console.log("open cert details", cert.vaccinationCerts.size);
         }
     }
     Column {
@@ -26,16 +26,21 @@ Rectangle {
         padding: units.gu(2)
         spacing: units.gu(2)
         Row {
-            Icon {
+            Image {
                 width: units.gu(4)
                 height: units.gu(4)
-                name: cert.icon()
-                color: _textColor
+                source: "../../assets/" + cert.icon()
             }
+            // Icon {
+            //     width: units.gu(4)
+            //     height: units.gu(4)
+            //     name: cert.icon()
+            //     color: _textColor
+            // }
             Column {
                 leftPadding: units.gu(2)
                 Label {
-                    text: "Impfzertifikat"
+                    text: cert.type()
                     textSize: Label.Large
                     color: _textColor
                 }

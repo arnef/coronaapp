@@ -1,0 +1,2 @@
+<!-- https://github.com/Digitaler-Impfnachweis/covpass-android/blob/d26232cb31319dd3c8bdb1b57890c26a6169d830/common-app-covpass/src/main/res/drawable-anydpi/main_cert_test.xml -->
+<svg width="256" height="256" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.062 0H6.004a.752.752 0 00-.754.75c0 .414.337.75.754.75h.655v17.16c0 2.95 2.403 5.34 5.366 5.34 2.963 0 5.366-2.39 5.366-5.34V1.5h.67a.752.752 0 00.754-.75.752.752 0 00-.753-.75zm-2.17 5.175c-.4.566-1.885 2.434-3.961 2.719a9.886 9.886 0 00-3.768 1.338V1.5h7.728z" stroke="#00000000" fill="#fff"/></svg>

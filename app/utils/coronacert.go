@@ -4,22 +4,22 @@ import (
 	"crypto/sha1"
 	"fmt"
 
-	"github.com/stapelberg/coronaqr"
+	"github.com/arnef/coronaapp/app/covpass"
 )
 
 type CoronaCert struct {
-	*coronaqr.Decoded
+	*covpass.CovCert
 	Raw string
 	ID  string
 }
 
 func CertFromString(val string) (*CoronaCert, error) {
-	decoded, err := coronaqr.Decode(val)
+	covCert, err := covpass.DecodeString(val)
 	if err != nil {
 		return nil, err
 	}
 	return &CoronaCert{
-		Decoded: decoded.SkipVerification(),
+		CovCert: covCert,
 		ID:      fmt.Sprintf("%x", sha1.Sum([]byte(val))),
 		Raw:     val,
 	}, nil

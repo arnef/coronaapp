@@ -59,15 +59,7 @@ MainView {
 
         CertDetailsPage {
             id: certDetailsPage
-            onOpenVaccination: function(cert) {
-                certListPage.pageStack.addPageToNextColumn(certDetailsPage, vaccinationDetailsPage, { cert: cert })
-            }
         }
-
-        VaccinationDetailsPage {
-            id: vaccinationDetailsPage
-        }
-
     }
         
         

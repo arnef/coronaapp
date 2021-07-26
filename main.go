@@ -31,6 +31,8 @@ import (
 )
 
 func main() {
+	log.SetLevel(log.DebugLevel)
+
 	err := qml.Run(run)
 	if err != nil {
 		log.Fatal(err)
@@ -67,11 +69,8 @@ func run() error {
 		if err != nil {
 			log.Errorln(err)
 		} else {
-			// only allow vaccination certs for now
-			if len(cert.Cert.VaccineRecords) > 0 {
-				storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
-				state.AppendCert(cert)
-			}
+			storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
+			state.AppendCert(cert)
 		}
 
 	}
