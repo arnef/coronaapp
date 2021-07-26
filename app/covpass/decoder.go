@@ -1,3 +1,4 @@
+/// https://github.com/stapelberg/coronaqr/blob/a597152e18513507a7e4bbfc28234b4fa458a047/coronaqr.go
 package covpass
 
 import (
