@@ -40,10 +40,28 @@ Page {
         anchors.top: header.bottom
         model: cert ? cert.data.size : 0
         delegate: ListItem {
+            height: row.height
             property var item: cert.data.get(index)
-            ListItemLayout {
-                title.text: item.title
-                subtitle.text: item.subtitle
+            Column {
+                leftPadding: units.gu(2)
+                rightPadding: units.gu(2)
+                topPadding: units.gu(1)
+                bottomPadding: units.gu(1)
+                spacing: units.gu(1) / 2
+                id: row
+                width: parent.width
+                Label {
+                    width: parent.width - parent.leftPadding - parent.rightPadding
+                    text: item.title
+                    wrapMode: Text.WordWrap
+                    textSize: Label.Small
+                    opacity: .75
+                }
+                Label {
+                    width: parent.width - parent.leftPadding - parent.rightPadding
+                    text: item.subtitle || " "
+                    wrapMode: Text.WordWrap
+                }
             }
         }
     }
