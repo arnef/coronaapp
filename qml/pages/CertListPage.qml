@@ -21,7 +21,7 @@ Page {
         anchors.top: header.bottom
         model: myapp.certs.size
         visible: myapp.certs.size > 0
-        snapMode: ListView.SnapToItem
+        snapMode: ListView.SnapOneItem
         delegate: Item {
             width: root.width
             CertItem {
@@ -40,6 +40,7 @@ Page {
         width: parent.width
         padding: units.gu(2)
         spacing: units.gu(2)
+        visible: myapp.certs.size == 0
         Image {
             id: icon
             source: "../../assets/no_certs.svg"
@@ -49,7 +50,6 @@ Page {
         }
         Label {
             width: parent.width - units.gu(4)
-            visible: myapp.certs.size == 0
             text: "Du hast aktuell kein digitales COVID-Zertifikat der EU gespeichert."
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
