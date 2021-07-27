@@ -31,7 +31,8 @@ import (
 )
 
 func main() {
-	log.SetLevel(log.DebugLevel)
+	// TODO set by build envs
+	// log.SetLevel(log.DebugLevel)
 
 	err := qml.Run(run)
 	if err != nil {
