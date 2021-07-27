@@ -22,6 +22,7 @@ Page {
         model: myapp.certs.size
         visible: myapp.certs.size > 0
         snapMode: ListView.SnapOneItem
+        highlightRangeMode: ListView.StrictlyEnforceRange  //to update current index, needed for snapMode to work
         delegate: Item {
             width: root.width
             CertItem {
