@@ -16,10 +16,6 @@
 
 import QtQuick 2.12
 import Ubuntu.Components 1.3
-//import QtQuick.Controls 2.2
-import QtQuick.Layouts 1.3
-import Qt.labs.settings 1.0
-import QtMultimedia 5.4
 
 import "pages"
 
@@ -66,7 +62,6 @@ MainView {
     BottomEdge {
         id: bottomEdge
         height: parent.height
-        preloadContent: true
         contentComponent: QRCodeScanner {
             active: _doScan
             width: bottomEdge.width
@@ -76,12 +71,10 @@ MainView {
             }
         }
         onCollapseCompleted: {
-            console.log("stop scan")
-            _doScan = false;
+            _doScan = false
         }
         onCommitCompleted: {
-            _doScan = true;
-            console.log("start scan")
+            _doScan = true
         }
     }
 }
