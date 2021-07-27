@@ -18,6 +18,7 @@ package main
 
 import (
 	"fmt"
+	"image"
 
 	"github.com/arnef/coronaapp/app"
 	"github.com/arnef/coronaapp/app/provider"
@@ -88,27 +89,36 @@ type QRScanner struct {
 	HasResult bool
 	reader    gozxing.Reader
 	Scanned   func(string)
+	running   bool
 }
 
-func (qr *QRScanner) Scan() {
-	log.Debugln("should scan")
+func (qr *QRScanner) Scan(x, y, width, height int) {
 	if qr.Win != nil {
 		go func() {
-			log.Debugln("scan screen for qr")
-			img := qr.Win.Snapshot()
-
-			// prepare BinaryBitmap
-			bmp, _ := gozxing.NewBinaryBitmapFromImage(img)
-
-			// decode image
-			result, _ := qr.reader.Decode(bmp, nil)
-			if result != nil {
-				log.Debugln(result.GetBarcodeFormat())
-				qr.HasResult = true
-				qml.Changed(qr, &qr.HasResult)
-				qr.Scanned(result.String())
-				qr.HasResult = false
+			if !qr.running {
+				log.Debugln("scan screen for qr", x, y, width, height)
+				qr.running = true
+				img := qr.Win.Snapshot()
+				my_sub_image := img.(interface {
+					SubImage(r image.Rectangle) image.Image
+				}).SubImage(image.Rect(x, y, x+width, y+height))
+				// prepare BinaryBitmap
+				bmp, _ := gozxing.NewBinaryBitmapFromImage(my_sub_image)
+				// decode image
+				result, _ := qr.reader.Decode(bmp, nil)
+				if result != nil {
+					qr.HandleString(result.String())
+				}
+				qr.running = false
 			}
 		}()
 	}
+}
+
+func (qr *QRScanner) HandleString(val string) {
+	qr.HasResult = true
+	qml.Changed(qr, &qr.HasResult)
+	qr.Scanned(val)
+	qr.HasResult = false
+	qml.Changed(qr, &qr.HasResult)
 }

@@ -16,7 +16,6 @@ Rectangle {
     TapHandler {
         onTapped: {
             select(cert);
-            // console.log("open cert details", cert.vaccinationCerts.size);
         }
     }
     Column {
@@ -31,12 +30,6 @@ Rectangle {
                 height: units.gu(4)
                 source: "../../assets/" + cert.icon()
             }
-            // Icon {
-            //     width: units.gu(4)
-            //     height: units.gu(4)
-            //     name: cert.icon()
-            //     color: _textColor
-            // }
             Column {
                 leftPadding: units.gu(2)
                 Label {
