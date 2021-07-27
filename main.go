@@ -98,7 +98,6 @@ func (qr *QRScanner) Scan(x, y, width, height int) {
 				log.Debugln("scan screen for qr", x, y, width, height)
 				qr.running = true
 				img := qr.Win.Snapshot()
-				// img.
 				my_sub_image := img.(interface {
 					SubImage(r image.Rectangle) image.Image
 				}).SubImage(image.Rect(x, y, x+width, y+height))

@@ -62,7 +62,6 @@ MainView {
     BottomEdge {
         id: bottomEdge
         height: parent.height
-        // preloadContent: true
         contentComponent: QRCodeScanner {
             active: _doScan
             width: bottomEdge.width
