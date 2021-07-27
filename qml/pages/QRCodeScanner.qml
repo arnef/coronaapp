@@ -26,7 +26,7 @@ Page {
 
     Timer {
         id: captureTimer
-        interval: 2000
+        interval: 500
         repeat: true
         running: active && !scanner.hasResult
         onTriggered: {
@@ -39,11 +39,10 @@ Page {
                 if (scanner.hasResult) {
                     page.done()
                 }
-                
+
             } else {
                 camera.start()
             }
-            console.log("timer running", running)
         }
     }
 
