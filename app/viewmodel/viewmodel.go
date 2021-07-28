@@ -1,17 +1,13 @@
 package viewmodel
 
 import (
-	"crypto/sha1"
-	"encoding/json"
-	"fmt"
-
 	"github.com/arnef/coronaapp/app/utils"
-	"github.com/stapelberg/coronaqr"
 )
 
 type CertList struct {
-	Size  int
-	certs []*Cert
+	Size         int
+	EmptyMessage string
+	certs        []*Cert
 }
 
 func (c *CertList) Get(index int) *Cert {
@@ -19,14 +15,6 @@ func (c *CertList) Get(index int) *Cert {
 		return c.certs[index]
 	}
 	return nil
-}
-
-func (c *CertList) CertID(cert *coronaqr.Decoded) (string, error) {
-	data, err := json.Marshal(cert)
-	if err != nil {
-		return "", err
-	}
-	return fmt.Sprintf("%x", sha1.Sum(data)), nil
 }
 
 func (c *CertList) RemoveByID(id string) {

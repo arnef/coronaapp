@@ -6,6 +6,7 @@ import (
 	"github.com/arnef/coronaapp/app/storage"
 	"github.com/arnef/coronaapp/app/utils"
 	"github.com/arnef/coronaapp/app/viewmodel"
+	"github.com/leonelquinteros/gotext"
 	"github.com/nanu-c/qml-go"
 
 	log "github.com/sirupsen/logrus"
@@ -19,7 +20,8 @@ type State struct {
 func Init() State {
 	state := State{
 		Certs: &viewmodel.CertList{
-			Size: 0,
+			EmptyMessage: gotext.Get("You currently do not have saved any digital EU-COVID certificates."),
+			Size:         0,
 		},
 	}
 

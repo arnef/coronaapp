@@ -2,8 +2,10 @@ package viewmodel
 
 import (
 	"fmt"
+	"time"
 
 	"github.com/arnef/coronaapp/app/covpass"
+	"github.com/leonelquinteros/gotext"
 )
 
 type Cert struct {
@@ -17,14 +19,21 @@ type Cert struct {
 	test        *covpass.Test
 }
 
+func intl(val string, key string) string {
+	if val != key {
+		return fmt.Sprintf("%s / %s", val, key)
+	}
+	return val
+}
+
 func (c *Cert) GenerateData() {
 	rows := []*DataRow{
 		{
-			Title:    "Name, Vorname / Name, first name",
+			Title:    intl(gotext.Get("Name, first name"), "Name, first name"),
 			Subtitle: fmt.Sprintf("%s, %s", c.FamilyName, c.GivenName),
 		},
 		{
-			Title:    "Geburtstag / Date of birth (YYYY-MM-DD)",
+			Title:    intl(gotext.Get("Date of birth (YYYY-MM-DD)"), "Date of birth (YYYY-MM-DD)"),
 			Subtitle: c.DateOfBirth,
 		},
 	}
@@ -47,18 +56,18 @@ func (c *Cert) GenerateData() {
 
 func (c *Cert) Type() string {
 	if c.vaccination != nil {
-		return "Impfzertifikat"
+		return gotext.Get("Vaccination certificate")
 	}
 	if c.recovery != nil {
-		return "Genesenenzertifikat"
+		return gotext.Get("Recovery certificate")
 	}
 
 	if c.test != nil {
 		switch c.test.TestType {
 		case covpass.PCRTest:
-			return "PCR-Test"
+			return gotext.Get("PCR test")
 		case covpass.AntigenTest:
-			return "Antigen-Schnelltest"
+			return gotext.Get("Rapid antigen test")
 		}
 
 	}
@@ -69,17 +78,20 @@ func (c *Cert) Title() string {
 	if c.vaccination != nil {
 		switch c.vaccination.Type() {
 		case covpass.VaccinationFullProtectionCertType:
-			return "Vollständiger Impfschutz"
+			return gotext.Get("Full vaccination protection")
 		case covpass.VaccinationCompleteCertType:
-			return "Vollständig ab ..."
-		case covpass.VaccinationIncompleteCertType:
-			return "Unvollständiger Impfschutz"
+			occurence, err := covpass.ParseDay(c.vaccination.Occurence)
+			if err == nil {
+				return gotext.Get("Full protection as of %s", occurence.Add(14*24*time.Hour).Format("02.01.2006"))
+			}
+		default:
+			return gotext.Get("Incomplete vaccination protection")
 		}
 	}
 	if c.recovery != nil {
 		validDay, err := covpass.ParseDay(c.recovery.ValidUntil)
 		if err == nil {
-			return fmt.Sprintf("Gültig bis %s", validDay.Format("02.01.2006"))
+			return gotext.Get("Valid until %s", validDay.Format("02.01.2006"))
 		}
 	}
 	if c.test != nil {

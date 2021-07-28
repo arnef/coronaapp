@@ -1,0 +1,156 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid   ""
+msgstr  "Project-Id-Version: \n"
+        "Report-Msgid-Bugs-To: EMAIL\n"
+        "POT-Creation-Date: 2021-07-28 23:39+0200\n"
+        "PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+        "Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+        "Language-Team: LANGUAGE <LL@li.org>\n"
+        "Language: \n"
+        "MIME-Version: 1.0\n"
+        "Content-Type: text/plain; charset=CHARSET\n"
+        "Content-Transfer-Encoding: 8bit\n"
+
+#: ./app/viewmodel/vaccination.go:23
+msgid   "Vaccine Type"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:59
+msgid   "Vaccination certificate"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:81
+msgid   "Full vaccination protection"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:19
+msgid   "Vaccine"
+msgstr  ""
+
+#: ./app/viewmodel/recovery.go:18
+msgid   "Date of first positive test result (YYYY-MM-DD)"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:18
+msgid   "Type of test"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:30
+msgid   "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:26
+msgid   "Test manufacturer"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:38
+msgid   "Testing centre or facility"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:62
+msgid   "Recovery certificate"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:85
+#, c-format
+msgid   "Full protection as of %s"
+msgstr  ""
+
+#: ./main.go:65
+msgid   "Delete certificate?"
+msgstr  ""
+
+#: ./main.go:66
+msgid   "Cancel"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:47 ./app/viewmodel/recovery.go:38 ./app/viewmodel/test.go:50
+msgid   "Unique certificate identifier"
+msgstr  ""
+
+#: ./app/viewmodel/recovery.go:14
+msgid   "Disease or agent the citizen has recovered from"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:88
+msgid   "Incomplete vaccination protection"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:15 ./app/viewmodel/test.go:14
+msgid   "Disease or agent targeted"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:31
+msgid   "Number in a series of vaccinations/doses"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:39
+msgid   "Member State of vaccination"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:22
+msgid   "Test name"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:27
+msgid   "Manufacturer"
+msgstr  ""
+
+#: ./app/viewmodel/test.go:34
+msgid   "Test result"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:32
+msgid   "Name, first name"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:36
+msgid   "Date of birth (YYYY-MM-DD)"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:68
+msgid   "PCR test"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:94
+#, c-format
+msgid   "Valid until %s"
+msgstr  ""
+
+#: ./app/state.go:23
+msgid   "You currently do not have saved any digital EU-COVID certificates."
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:35
+msgid   "Date of vaccination (YYYY-MM-DD)"
+msgstr  ""
+
+#: ./app/viewmodel/vaccination.go:43 ./app/viewmodel/recovery.go:26 ./app/viewmodel/test.go:46
+msgid   "Certificate issuer"
+msgstr  ""
+
+#: ./app/viewmodel/recovery.go:22 ./app/viewmodel/test.go:42
+msgid   "Member State of test"
+msgstr  ""
+
+#: ./main.go:64
+msgid   "Delete"
+msgstr  ""
+
+#: ./app/viewmodel/recovery.go:30
+msgid   "Certificate valid from (YYYY-MM-DD)"
+msgstr  ""
+
+#: ./app/viewmodel/recovery.go:34
+msgid   "Certificate valid until (no more than 180 days after the date of first positive test result)(YYYY-MM-DD)"
+msgstr  ""
+
+#: ./app/viewmodel/cert.go:70
+msgid   "Rapid antigen test"
+msgstr  ""
+

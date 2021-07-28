@@ -6,44 +6,45 @@ import (
 
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
+	"github.com/leonelquinteros/gotext"
 )
 
 func vaccinationData(vaccination *covpass.Vaccination, rows []*DataRow) []*DataRow {
 	return append(rows, []*DataRow{
 		{
-			Title:    "Zielkrankheit oder -erreger / Disease or agent targeted",
+			Title:    intl(gotext.Get("Disease or agent targeted"), "Disease or agent targeted"),
 			Subtitle: euvaluerepo.GetDiseaseAgentName(vaccination.TargetDisease),
 		},
 		{
-			Title:    "Impfstoff / Vaccine",
+			Title:    intl(gotext.Get("Vaccine"), "Vaccine"),
 			Subtitle: euvaluerepo.GetProductName(vaccination.Product),
 		},
 		{
-			Title:    "Art des Impfstoffs / Vaccine Type",
+			Title:    intl(gotext.Get("Vaccine Type"), "Vaccine Type"),
 			Subtitle: euvaluerepo.GetProphylaxisName(vaccination.VaccineCode),
 		},
 		{
-			Title:    "Hersteller / Manufacturer",
+			Title:    intl(gotext.Get("Manufacturer"), "Manufacturer"),
 			Subtitle: euvaluerepo.GetManufacturerName(vaccination.Manufacturer),
 		},
 		{
-			Title:    "Nummer der Impfung / Number in a series of vaccinations/doses",
+			Title:    intl(gotext.Get("Number in a series of vaccinations/doses"), "Number in a series of vaccinations/doses"),
 			Subtitle: fmt.Sprintf("%d/%d", vaccination.DoseNumber, vaccination.TotalSerialDoses),
 		},
 		{
-			Title:    "Datum der Impfung / Date of vaccination (YYYY-MM-DD)",
+			Title:    intl(gotext.Get("Date of vaccination (YYYY-MM-DD)"), "Date of vaccination (YYYY-MM-DD)"),
 			Subtitle: vaccination.Occurence,
 		},
 		{
-			Title:    "Land der Impfung / Member State of vaccination",
+			Title:    intl(gotext.Get("Member State of vaccination"), "Member State of vaccination"),
 			Subtitle: euvaluerepo.GetCountryName(vaccination.Country),
 		},
 		{
-			Title:    "Zertifikataussteller / Certificate issuer",
+			Title:    intl(gotext.Get("Certificate issuer"), "Certificate issuer"),
 			Subtitle: vaccination.CertificateIssuer,
 		},
 		{
-			Title:    "Zertifikatkennung / Unique certificate identifier",
+			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
 			Subtitle: strings.TrimPrefix(vaccination.ID, "URN:UVCI:"),
 		},
 	}...)
