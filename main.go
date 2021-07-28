@@ -19,11 +19,13 @@ package main
 import (
 	"fmt"
 	"image"
+	"os"
 
 	"github.com/arnef/coronaapp/app"
 	"github.com/arnef/coronaapp/app/provider"
 	"github.com/arnef/coronaapp/app/storage"
 	"github.com/arnef/coronaapp/app/utils"
+	"github.com/leonelquinteros/gotext"
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/qrcode"
 	"github.com/nanu-c/qml-go"
@@ -34,6 +36,8 @@ import (
 func main() {
 	// TODO set by build envs
 	// log.SetLevel(log.DebugLevel)
+
+	gotext.Configure("./locales", os.Getenv("LANGUAGE"), "default")
 
 	err := qml.Run(run)
 	if err != nil {
@@ -56,8 +60,15 @@ func run() error {
 	}
 	context := engine.Context()
 
+	r := R{
+		Delete:     gotext.Get("Delete"),
+		DeleteCert: gotext.Get("Delete certificate?"),
+		Cancel:     gotext.Get("Cancel"),
+	}
+
 	context.SetVar("scanner", &scanner)
 	context.SetVar("myapp", &state)
+	context.SetVar("R", &r)
 
 	win := component.CreateWindow(nil)
 
@@ -81,6 +92,12 @@ func run() error {
 	win.Wait()
 
 	return nil
+}
+
+type R struct {
+	Delete     string
+	DeleteCert string
+	Cancel     string
 }
 
 type QRScanner struct {

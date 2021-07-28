@@ -7,12 +7,12 @@ Component {
     id: removeCertificate
     Dialog {
         id: removeCertificateDialog
-        title: "Zertifikat löschen"
+        title: R.deleteCert
         
         signal accepted();
 
         Button {
-            text: "Löschen"
+            text: R.delete
             color: theme.palette.normal.negative
             onClicked: {
                 removeCertificateDialog.accepted();
@@ -21,7 +21,7 @@ Component {
         }
 
         Button {
-            text: "Abbrechen"
+            text: R.cancel
             onClicked: {
                 PopupUtils.close(removeCertificateDialog)
             }

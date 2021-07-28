@@ -5,48 +5,49 @@ import (
 
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
+	"github.com/leonelquinteros/gotext"
 )
 
 func testData(test *covpass.Test, rows []*DataRow) []*DataRow {
 	return append(rows, []*DataRow{
 		{
-			Title:    "Zielkrankheit oder -erreger / Disease or agent targeted",
+			Title:    intl(gotext.Get("Disease or agent targeted"), "Disease or agent targeted"),
 			Subtitle: euvaluerepo.GetDiseaseAgentName(test.TargetDisease),
 		},
 		{
-			Title:    "Art des Tests / Type of test",
+			Title:    intl(gotext.Get("Type of test"), "Type of test"),
 			Subtitle: euvaluerepo.GetTestTypeName(test.TestType),
 		},
 		{
-			Title:    "Produktname / Test name",
+			Title:    intl(gotext.Get("Test name"), "Test name"),
 			Subtitle: test.TestName,
 		},
 		{
-			Title:    "Testhersteller / Test manufacturer",
+			Title:    intl(gotext.Get("Test manufacturer"), "Test manufacturer"),
 			Subtitle: euvaluerepo.GetTestManufacturerName(test.Manufacturer),
 		},
 		{
-			Title:    "Datum und Uhrzeit der Probenahme / Date and time of the sample collection (YYYY-MM-DD, HH:MM)",
-			Subtitle: test.SampleCollection.Format("2006-02-01 15:04"),
+			Title:    intl(gotext.Get("Date and time of the sample collection (YYYY-MM-DD, HH:MM)"), "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"),
+			Subtitle: test.SampleCollection.Format("2006-02-01, 15:04"),
 		},
 		{
-			Title:    "Testergebnis / Test result",
+			Title:    intl(gotext.Get("Test result"), "Test result"),
 			Subtitle: euvaluerepo.GetTestResultName(test.TestResult),
 		},
 		{
-			Title:    "Testzentrum oder -einrichtung / Testing centre or facility",
+			Title:    intl(gotext.Get("Testing centre or facility"), "Testing centre or facility"),
 			Subtitle: test.TestCentre,
 		},
 		{
-			Title:    "Land der Testung / Member State of test",
+			Title:    intl(gotext.Get("Member State of test"), "Member State of test"),
 			Subtitle: euvaluerepo.GetCountryName(test.Country),
 		},
 		{
-			Title:    "Zertifikataussteller / Certificate issuer",
+			Title:    intl(gotext.Get("Certificate issuer"), "Certificate issuer"),
 			Subtitle: test.CertificateIssuer,
 		},
 		{
-			Title:    "Zertifikatkennung / Unique certificate identifier",
+			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
 			Subtitle: strings.TrimPrefix(test.ID, "URN:UVCI:"),
 		},
 	}...)

@@ -17,7 +17,7 @@ Page {
             numberOfSlots: 1
             actions: [
                 Action {
-                    text: "Löschen"
+                    text: R.delete
                     iconName: "delete"
                     onTriggered: {
                         var popup = PopupUtils.open(removeCertificate, root);

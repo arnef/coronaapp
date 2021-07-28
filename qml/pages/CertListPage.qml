@@ -51,7 +51,7 @@ Page {
         }
         Label {
             width: parent.width - units.gu(4)
-            text: "Du hast aktuell kein digitales COVID-Zertifikat der EU gespeichert."
+            text: myapp.certs.emptyMessage
             wrapMode: Text.WordWrap
             horizontalAlignment: Text.AlignHCenter
         }
