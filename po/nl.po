@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: EMAIL\n"
+"POT-Creation-Date: 2021-07-28 23:39+0200\n"
+"PO-Revision-Date: 2021-07-29 13:11+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 3.0\n"
+"Last-Translator: Heimen Stoffels <vistausss@fastmail.com>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: nl\n"
+
+#: app/viewmodel/vaccination.go:23
+msgid "Vaccine Type"
+msgstr "Soort vaccinatie"
+
+#: app/viewmodel/cert.go:59
+msgid "Vaccination certificate"
+msgstr "Vaccinatiecertificaat"
+
+#: app/viewmodel/cert.go:81
+msgid "Full vaccination protection"
+msgstr "Volledige bescherming"
+
+#: app/viewmodel/vaccination.go:19
+msgid "Vaccine"
+msgstr "Vaccin"
+
+#: app/viewmodel/recovery.go:18
+msgid "Date of first positive test result (YYYY-MM-DD)"
+msgstr "Datum van eerste positieve testresultaat (JJJJ-MM-DD)"
+
+#: app/viewmodel/test.go:18
+msgid "Type of test"
+msgstr "Soort test"
+
+#: app/viewmodel/test.go:30
+msgid "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
+msgstr "Datum en tijd van antistoffentest (JJJJ-MM-DD, UU:MM)"
+
+#: app/viewmodel/test.go:26
+msgid "Test manufacturer"
+msgstr "Fabrikant van test"
+
+#: app/viewmodel/test.go:38
+msgid "Testing centre or facility"
+msgstr "Onderzoekscentrum of -instelling"
+
+#: app/viewmodel/cert.go:62
+msgid "Recovery certificate"
+msgstr "Herstelcertificaat"
+
+#: app/viewmodel/cert.go:85
+#, c-format
+msgid "Full protection as of %s"
+msgstr "Volledig beschermd sinds %s"
+
+#: main.go:65
+msgid "Delete certificate?"
+msgstr "Wil je het certificaat verwijderen?"
+
+#: main.go:66
+msgid "Cancel"
+msgstr "Annuleren"
+
+#: app/viewmodel/vaccination.go:47 app/viewmodel/recovery.go:38
+#: app/viewmodel/test.go:50
+msgid "Unique certificate identifier"
+msgstr "Uniek certificaatnummer"
+
+#: app/viewmodel/recovery.go:14
+msgid "Disease or agent the citizen has recovered from"
+msgstr "Hersteld van"
+
+#: app/viewmodel/cert.go:88
+msgid "Incomplete vaccination protection"
+msgstr "Onvolledige bescherming"
+
+#: app/viewmodel/vaccination.go:15 app/viewmodel/test.go:14
+msgid "Disease or agent targeted"
+msgstr "Gevaccineerd tegen"
+
+#: app/viewmodel/vaccination.go:31
+msgid "Number in a series of vaccinations/doses"
+msgstr "Aantal keer gevaccineerd/Aantal doseringen"
+
+#: app/viewmodel/vaccination.go:39
+msgid "Member State of vaccination"
+msgstr "Gevaccineerd in"
+
+#: app/viewmodel/test.go:22
+msgid "Test name"
+msgstr "Naam van test"
+
+#: app/viewmodel/vaccination.go:27
+msgid "Manufacturer"
+msgstr "Fabrikant"
+
+#: app/viewmodel/test.go:34
+msgid "Test result"
+msgstr "Testresultaat"
+
+#: app/viewmodel/cert.go:32
+msgid "Name, first name"
+msgstr "Achternaam, voornaam"
+
+#: app/viewmodel/cert.go:36
+msgid "Date of birth (YYYY-MM-DD)"
+msgstr "Geboortedatum (JJJJ-MM-DD)"
+
+#: app/viewmodel/cert.go:68
+msgid "PCR test"
+msgstr "PCR-test"
+
+#: app/viewmodel/cert.go:94
+#, c-format
+msgid "Valid until %s"
+msgstr "Geldig tot %s"
+
+#: app/state.go:23
+msgid "You currently do not have saved any digital EU-COVID certificates."
+msgstr "Je hebt nog geen opgeslagen EU-COVID-certificaten."
+
+#: app/viewmodel/vaccination.go:35
+msgid "Date of vaccination (YYYY-MM-DD)"
+msgstr "Vaccinatiedatum (JJJJ-MM-DD)"
+
+#: app/viewmodel/vaccination.go:43 app/viewmodel/recovery.go:26
+#: app/viewmodel/test.go:46
+msgid "Certificate issuer"
+msgstr "Certificaatverstrekker"
+
+#: app/viewmodel/recovery.go:22 app/viewmodel/test.go:42
+msgid "Member State of test"
+msgstr "Getest in"
+
+#: main.go:64
+msgid "Delete"
+msgstr "Verwijderen"
+
+#: app/viewmodel/recovery.go:30
+msgid "Certificate valid from (YYYY-MM-DD)"
+msgstr "Het certificaat is geldig van (JJJJ-MM-DD)"
+
+#: app/viewmodel/recovery.go:34
+msgid ""
+"Certificate valid until (no more than 180 days after the date of first "
+"positive test result)(YYYY-MM-DD)"
+msgstr ""
+"Het certificaat is geldig tot (niet langer dan 180 dagen na het eerste "
+"positieve testresultaat - JJJJ-MM-DD)"
+
+#: app/viewmodel/cert.go:70
+msgid "Rapid antigen test"
+msgstr "Coronasneltest"
