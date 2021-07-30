@@ -51,7 +51,7 @@ Rectangle {
             height: size
         }
 
-        Row {
+        Item {
             width: layout.width
             height: name.implicitHeight
             anchors.leftMargin: units.gu(2)
@@ -65,6 +65,7 @@ Rectangle {
                 textSize: Label.Large
             }
             Icon {
+                anchors.verticalCenter: parent.verticalCenter
                 anchors.right: parent.right
                 name: "go-next"
                 width: units.gu(2)
