@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: EMAIL\n"
+"POT-Creation-Date: 2021-07-28 23:39+0200\n"
+"PO-Revision-Date: 2021-07-30 20:50+0200\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: Pavel Zlámal <zlamal.pavel87@seznam.cz>\n"
+"Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n>=2 && n<=4 ? 1 : 2);\n"
+"Language: cs\n"
+
+#: app/viewmodel/vaccination.go:23
+msgid "Vaccine Type"
+msgstr "Typ vakcíny"
+
+#: app/viewmodel/cert.go:59
+msgid "Vaccination certificate"
+msgstr "Očkovací certifikát"
+
+#: app/viewmodel/cert.go:81
+msgid "Full vaccination protection"
+msgstr "Plná ochrana vakcinací"
+
+#: app/viewmodel/vaccination.go:19
+msgid "Vaccine"
+msgstr "Vakcína"
+
+#: app/viewmodel/recovery.go:18
+msgid "Date of first positive test result (YYYY-MM-DD)"
+msgstr "Datum prvního pozitivního výsledku (RRRR-MM-DD)"
+
+#: app/viewmodel/test.go:18
+msgid "Type of test"
+msgstr "Typ testu"
+
+#: app/viewmodel/test.go:30
+msgid "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
+msgstr "Datum a čas odebrání vzorku (RRRR-MM-DD, HH:MM)"
+
+#: app/viewmodel/test.go:26
+msgid "Test manufacturer"
+msgstr "Výrobce testu"
+
+#: app/viewmodel/test.go:38
+msgid "Testing centre or facility"
+msgstr "Testovací centrum nebo zařízení"
+
+#: app/viewmodel/cert.go:62
+msgid "Recovery certificate"
+msgstr "Certifikát o prodělané nemoci"
+
+#: app/viewmodel/cert.go:85
+#, c-format
+msgid "Full protection as of %s"
+msgstr "Plná ochrana od %s"
+
+#: main.go:65
+msgid "Delete certificate?"
+msgstr "Smazat certifikát?"
+
+#: main.go:66
+msgid "Cancel"
+msgstr "Zrušit"
+
+#: app/viewmodel/vaccination.go:47 app/viewmodel/recovery.go:38
+#: app/viewmodel/test.go:50
+msgid "Unique certificate identifier"
+msgstr "Unikátní identifikátor certifikátu"
+
+#: app/viewmodel/recovery.go:14
+msgid "Disease or agent the citizen has recovered from"
+msgstr "Nemoc nebo agens ze které se občan zotavil"
+
+#: app/viewmodel/cert.go:88
+msgid "Incomplete vaccination protection"
+msgstr "Částečná ochrana vakcinací"
+
+#: app/viewmodel/vaccination.go:15 app/viewmodel/test.go:14
+msgid "Disease or agent targeted"
+msgstr "Cílená nemoc nebo agens"
+
+#: app/viewmodel/vaccination.go:31
+msgid "Number in a series of vaccinations/doses"
+msgstr "Pořadové číslo dávky/počet dávek"
+
+#: app/viewmodel/vaccination.go:39
+msgid "Member State of vaccination"
+msgstr "Členský stát"
+
+#: app/viewmodel/test.go:22
+msgid "Test name"
+msgstr "Název testu"
+
+#: app/viewmodel/vaccination.go:27
+msgid "Manufacturer"
+msgstr "Výrobce"
+
+#: app/viewmodel/test.go:34
+msgid "Test result"
+msgstr "Výsledek testu"
+
+#: app/viewmodel/cert.go:32
+msgid "Name, first name"
+msgstr "Příjmení, jméno"
+
+#: app/viewmodel/cert.go:36
+msgid "Date of birth (YYYY-MM-DD)"
+msgstr "Datum narození (RRRR-MM-DD)"
+
+#: app/viewmodel/cert.go:68
+msgid "PCR test"
+msgstr "PCR test"
+
+#: app/viewmodel/cert.go:94
+#, c-format
+msgid "Valid until %s"
+msgstr "Platnost do %s"
+
+#: app/state.go:23
+msgid "You currently do not have saved any digital EU-COVID certificates."
+msgstr "V současné době nemáte uložen žádný EU-COVID certifikát."
+
+#: app/viewmodel/vaccination.go:35
+msgid "Date of vaccination (YYYY-MM-DD)"
+msgstr "Datum vakcinace (RRRR-MM-DD)"
+
+#: app/viewmodel/vaccination.go:43 app/viewmodel/recovery.go:26
+#: app/viewmodel/test.go:46
+msgid "Certificate issuer"
+msgstr "Vydavatel certifikátu"
+
+#: app/viewmodel/recovery.go:22 app/viewmodel/test.go:42
+msgid "Member State of test"
+msgstr "Členský stát testu"
+
+#: main.go:64
+msgid "Delete"
+msgstr "Smazat"
+
+#: app/viewmodel/recovery.go:30
+msgid "Certificate valid from (YYYY-MM-DD)"
+msgstr "Certifikát platný od (RRRR-MM-DD)"
+
+#: app/viewmodel/recovery.go:34
+msgid ""
+"Certificate valid until (no more than 180 days after the date of first "
+"positive test result)(YYYY-MM-DD)"
+msgstr ""
+"Certifikát platný do (ne více než 180 dnů po datu prvního pozitivního "
+"testu)(RRRR-MM-DD)"
+
+#: app/viewmodel/cert.go:70
+msgid "Rapid antigen test"
+msgstr "Rychlý antigenní test"
