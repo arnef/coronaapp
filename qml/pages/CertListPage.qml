@@ -15,7 +15,9 @@ Page {
     }
 
     ListView {
-        height: parent.height - header.height
+        id: certlist
+        // TODO get height from content
+        height: parent.width + units.gu(13)
         width: parent.width
         orientation: ListView.Horizontal
         anchors.top: header.bottom
@@ -31,8 +33,29 @@ Page {
                 }
                 cert: myapp.certs.get(index)
             }
-        }            
+        }
     }
+    Item {
+        visible: myapp.certs.size > 1
+        anchors.top: certlist.bottom
+        anchors.horizontalCenter: parent.horizontalCenter
+        width: dots.implicitWidth
+        Row {
+            id: dots
+            spacing: units.gu(1) / 2
+            Repeater {
+                model: myapp.certs.size
+                delegate: Rectangle {
+                    width: units.gu(1)
+                    height: units.gu(1)
+                    opacity: index === certlist.currentIndex ? 1 : .5
+                    color: UbuntuColors.graphite
+                    radius: units.gu(1)/2
+                }
+            }
+        }
+    }
+
 
 
     Column {
