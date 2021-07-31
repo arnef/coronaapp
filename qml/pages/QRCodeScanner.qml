@@ -17,7 +17,7 @@ Page {
                     text: "toggle"
                     iconName: "edit-paste"
                     onTriggered: {
-                        scanner.handleString(Clipboard.data.text)
+                        scanner.decode(Clipboard.data.text)
                     }
                 }
             ]
@@ -26,7 +26,7 @@ Page {
 
     Timer {
         id: captureTimer
-        interval: 2000
+        interval: 750
         repeat: true
         running: active && !scanner.hasResult
         onTriggered: {
@@ -39,11 +39,9 @@ Page {
                 if (scanner.hasResult) {
                     page.done()
                 }
-                
             } else {
                 camera.start()
             }
-            console.log("timer running", running)
         }
     }
 

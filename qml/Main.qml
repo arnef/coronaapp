@@ -75,6 +75,7 @@ MainView {
         }
         onCommitCompleted: {
             _doScan = true
+            scanner.wait()
         }
     }
 }
