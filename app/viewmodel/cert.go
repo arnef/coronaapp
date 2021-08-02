@@ -82,7 +82,7 @@ func (c *Cert) Title() string {
 		case covpass.VaccinationCompleteCertType:
 			occurence, err := covpass.ParseDay(c.vaccination.Occurence)
 			if err == nil {
-				return gotext.Get("Full protection as of %s", occurence.Add(14*24*time.Hour).Format("02.01.2006"))
+				return gotext.Get("Full protection as of %s", occurence.Add(15*24*time.Hour).Format("02.01.2006"))
 			}
 		default:
 			return gotext.Get("Incomplete vaccination protection")
