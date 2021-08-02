@@ -23,7 +23,6 @@ MainView {
     id: root
     objectName: 'mainView'
     applicationName: 'coronaapp.de.arnef'
-    automaticOrientation: true
 
     width: units.gu(45)
     height: units.gu(75)
