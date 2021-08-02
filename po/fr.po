@@ -148,7 +148,7 @@ msgstr "Supprimer"
 
 #: app/viewmodel/recovery.go:30
 msgid "Certificate valid from (YYYY-MM-DD)"
-msgstr Certificat valide à partir de (RRRR-MM-DD)"
+msgstr "Certificat valide à partir de (RRRR-MM-DD)"
 
 #: app/viewmodel/recovery.go:34
 msgid ""
