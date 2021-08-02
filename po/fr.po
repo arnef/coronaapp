@@ -28,7 +28,7 @@ msgstr "Certificat de vaccination"
 
 #: app/viewmodel/cert.go:81
 msgid "Full vaccination protection"
-msgstr "Protection vaccination complète"
+msgstr "Protection de vaccination complète"
 
 #: app/viewmodel/vaccination.go:19
 msgid "Vaccine"
