@@ -1,0 +1,163 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: EMAIL\n"
+"POT-Creation-Date: 2021-07-28 23:39+0200\n"
+"PO-Revision-Date: 2021-08-01 10:11+0200\n"
+"Language-Team: Euskara\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.3\n"
+"Last-Translator: Aitzol Berasategi <aitzol@disroot.org>\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: eu\n"
+
+#: app/viewmodel/vaccination.go:23
+msgid "Vaccine Type"
+msgstr "Txerto mota"
+
+#: app/viewmodel/cert.go:59
+msgid "Vaccination certificate"
+msgstr "Txertaketa ziurtagiria"
+
+#: app/viewmodel/cert.go:81
+msgid "Full vaccination protection"
+msgstr "Txertaketaren babes osoa"
+
+#: app/viewmodel/vaccination.go:19
+msgid "Vaccine"
+msgstr "Txertoa"
+
+#: app/viewmodel/recovery.go:18
+msgid "Date of first positive test result (YYYY-MM-DD)"
+msgstr "Lehen emaitza positiboaren data(UUUU-HH-EE)"
+
+#: app/viewmodel/test.go:18
+msgid "Type of test"
+msgstr "Test mota"
+
+#: app/viewmodel/test.go:30
+msgid "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
+msgstr "Lagina jasotzeko data eta ordua (UUUU-HH-EE, HH:MM)"
+
+#: app/viewmodel/test.go:26
+msgid "Test manufacturer"
+msgstr "Test ekoizlea"
+
+#: app/viewmodel/test.go:38
+msgid "Testing centre or facility"
+msgstr "Test zentro edo instalakuntza"
+
+#: app/viewmodel/cert.go:62
+msgid "Recovery certificate"
+msgstr "Ziurtagiria berreskuratu"
+
+#: app/viewmodel/cert.go:85
+#, c-format
+msgid "Full protection as of %s"
+msgstr "Babes osoaren %s"
+
+#: main.go:65
+msgid "Delete certificate?"
+msgstr "Ziurtagiria ezabatu?"
+
+#: main.go:66
+msgid "Cancel"
+msgstr "Utzi"
+
+#: app/viewmodel/vaccination.go:47 app/viewmodel/recovery.go:38
+#: app/viewmodel/test.go:50
+msgid "Unique certificate identifier"
+msgstr "Ziurtagiriaren identifikatzaile bakarra"
+
+#: app/viewmodel/recovery.go:14
+msgid "Disease or agent the citizen has recovered from"
+msgstr "Hiritarrak gainditu duen gaixotasuna"
+
+#: app/viewmodel/cert.go:88
+msgid "Incomplete vaccination protection"
+msgstr "Txertaketa babes osatu gabea"
+
+#: app/viewmodel/vaccination.go:15 app/viewmodel/test.go:14
+msgid "Disease or agent targeted"
+msgstr "Gaixotasun edo xede agentea"
+
+#: app/viewmodel/vaccination.go:31
+msgid "Number in a series of vaccinations/doses"
+msgstr "Txertaketa/dosi serieko kopurua"
+
+#: app/viewmodel/vaccination.go:39
+msgid "Member State of vaccination"
+msgstr "Txertaketaren estatu kidea"
+
+#: app/viewmodel/test.go:22
+msgid "Test name"
+msgstr "Test izena"
+
+#: app/viewmodel/vaccination.go:27
+msgid "Manufacturer"
+msgstr "Ekoizlea"
+
+#: app/viewmodel/test.go:34
+msgid "Test result"
+msgstr "Testaren emaitza"
+
+#: app/viewmodel/cert.go:32
+msgid "Name, first name"
+msgstr "Izen-abizenak"
+
+#: app/viewmodel/cert.go:36
+msgid "Date of birth (YYYY-MM-DD)"
+msgstr "Jaiotze data(UUUU-HH-EE)"
+
+#: app/viewmodel/cert.go:68
+msgid "PCR test"
+msgstr "PCR testa"
+
+#: app/viewmodel/cert.go:94
+#, c-format
+msgid "Valid until %s"
+msgstr "%sera arte balio du"
+
+#: app/state.go:23
+msgid "You currently do not have saved any digital EU-COVID certificates."
+msgstr "Oraindik ez duzu EU-COVID ziurtagiri digitalik gorde."
+
+#: app/viewmodel/vaccination.go:35
+msgid "Date of vaccination (YYYY-MM-DD)"
+msgstr "Txertaketa data(UUUU-HH-EE)"
+
+#: app/viewmodel/vaccination.go:43 app/viewmodel/recovery.go:26
+#: app/viewmodel/test.go:46
+msgid "Certificate issuer"
+msgstr "Ziurtagiriaren igorlea"
+
+#: app/viewmodel/recovery.go:22 app/viewmodel/test.go:42
+msgid "Member State of test"
+msgstr "Testaren estatu kidea"
+
+#: main.go:64
+msgid "Delete"
+msgstr "Ezabatu"
+
+#: app/viewmodel/recovery.go:30
+msgid "Certificate valid from (YYYY-MM-DD)"
+msgstr "Ziurtagiriaren baliozkotze data(UUUU-HH-EE)"
+
+#: app/viewmodel/recovery.go:34
+msgid ""
+"Certificate valid until (no more than 180 days after the date of first "
+"positive test result)(YYYY-MM-DD)"
+msgstr ""
+"Ziurtagiriaren iraungitze data(gehienez 180 egun lehen test emaitza "
+"positiboaren dataz geroztik)(UUUU-HH-EE)"
+
+#: app/viewmodel/cert.go:70
+msgid "Rapid antigen test"
+msgstr "Antigeno test azkarra"
