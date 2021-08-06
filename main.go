@@ -35,8 +35,6 @@ func main() {
 	// TODO set by build envs
 	// log.SetLevel(log.DebugLevel)
 
-	gotext.Configure("./locales", os.Getenv("LANGUAGE"), "default")
-
 	err := qml.Run(run)
 	if err != nil {
 		log.Fatal(err)
@@ -44,22 +42,24 @@ func main() {
 }
 
 func run() error {
-	engine := qml.NewEngine()
-
-	component, err := engine.LoadFile("qml/Main.qml")
-	if err != nil {
-		return err
-	}
-	state := app.Init()
-
-	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
-	context := engine.Context()
-
+	gotext.Configure("./locales", os.Getenv("LANGUAGE"), "default")
 	r := R{
 		Delete:     gotext.Get("Delete"),
 		DeleteCert: gotext.Get("Delete certificate?"),
 		Cancel:     gotext.Get("Cancel"),
 	}
+
+	engine := qml.NewEngine()
+	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
+
+	state := app.Init()
+	context := engine.Context()
+
+	component, err := engine.LoadFile("qml/Main.qml")
+	if err != nil {
+		return err
+	}
+
 	context.SetVar("myapp", &state)
 	context.SetVar("R", &r)
 
@@ -76,7 +76,6 @@ func run() error {
 		state.AppendCert(cert)
 	})
 	context.SetVar("scanner", scanner)
-	state.Root = win.Root()
 
 	win.Show()
 	win.Wait()
