@@ -3,6 +3,7 @@ package scanner
 import (
 	"image"
 	"sync"
+	"time"
 
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/qrcode"
@@ -31,10 +32,10 @@ func New(win *qml.Window, onResultHandler OnResultHandler) Scanner {
 type scanner struct {
 	Root            qml.Object
 	win             *qml.Window
-	result          chan (string)
-	HasResult       bool
 	mutex           *sync.Mutex
+	result          chan (string)
 	onResultHandler OnResultHandler
+	HasResult       bool
 	Decoding        bool
 }
 
@@ -53,6 +54,10 @@ func (s *scanner) Wait() {
 	}()
 }
 
+type SubImage interface {
+	SubImage(r image.Rectangle) image.Image
+}
+
 func (s *scanner) Scan(x, y, width, height int) {
 
 	go func() {
@@ -60,23 +65,23 @@ func (s *scanner) Scan(x, y, width, height int) {
 		// lock while reader is decoding
 		s.mutex.Lock()
 		defer s.mutex.Unlock()
-		img := s.win.Snapshot()
-		subImg := img.(interface {
-			SubImage(r image.Rectangle) image.Image
-		}).SubImage(image.Rect(x, y, x+width, y+height))
-		reader := qrcode.NewQRCodeReader()
-		bmp, err := gozxing.NewBinaryBitmapFromImage(subImg)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-		result, err := reader.DecodeWithoutHints(bmp)
-		if err != nil {
-			log.Error(err)
-			return
-		}
-		if result != nil {
-			s.Decode(result.String())
+		img, ok := s.win.Snapshot().(SubImage)
+		if ok {
+			subImg := img.SubImage(image.Rect(x, y, x+width, y+height))
+			reader := qrcode.NewQRCodeReader()
+			bmp, err := gozxing.NewBinaryBitmapFromImage(subImg)
+			if err != nil {
+				log.Error(err)
+				return
+			}
+			result, err := reader.DecodeWithoutHints(bmp)
+			if err != nil {
+				log.Error(err)
+				return
+			}
+			if result != nil {
+				s.Decode(result.String())
+			}
 		}
 
 	}()
@@ -84,5 +89,6 @@ func (s *scanner) Scan(x, y, width, height int) {
 
 func (s *scanner) Decode(val string) {
 	log.Debugln("scanner.Handle", val)
+	time.Sleep(100 * time.Millisecond)
 	s.result <- val
 }

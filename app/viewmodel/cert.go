@@ -13,10 +13,10 @@ type Cert struct {
 	FamilyName  string
 	GivenName   string
 	DateOfBirth string
-	Data        *DataRows
 	vaccination *covpass.Vaccination
 	recovery    *covpass.Recovery
 	test        *covpass.Test
+	Data        *DataRows
 }
 
 func intl(val string, key string) string {
@@ -24,6 +24,34 @@ func intl(val string, key string) string {
 		return fmt.Sprintf("%s / %s", val, key)
 	}
 	return val
+}
+
+func (c *Cert) ValidUntil() time.Time {
+	validUntil := time.Now()
+
+	if c.recovery != nil {
+		if vu, err := covpass.ParseDay(c.recovery.ValidUntil); err == nil {
+
+			validUntil = vu
+		}
+	} else if c.test != nil {
+		if c.test.Type() == covpass.NegativePCRTestCertType {
+			validUntil = c.test.SampleCollection.AddDate(0, 0, 2)
+		} else if c.test.Type() == covpass.NegativeAntigenTestCertType {
+			validUntil = c.test.SampleCollection.AddDate(0, 0, 1)
+		}
+	} else if c.vaccination != nil {
+		if occ, err := covpass.ParseDay(c.vaccination.Occurence); err == nil {
+			if c.vaccination.Type() == covpass.VaccinationFullProtectionCertType {
+
+				validUntil = occ.AddDate(1, 0, 0)
+			} else {
+				validUntil = occ.AddDate(0, 0, 14)
+			}
+		}
+	}
+
+	return validUntil
 }
 
 func (c *Cert) GenerateData() {

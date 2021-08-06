@@ -5,12 +5,12 @@ type Vaccination struct {
 	VaccineCode       string `cbor:"vp"`
 	Product           string `cbor:"mp"`
 	Manufacturer      string `cbor:"ma"`
-	DoseNumber        int    `cbor:"dn"`
-	TotalSerialDoses  int    `cbor:"sd"`
 	Occurence         string `cbor:"dt"`
 	Country           string `cbor:"co"`
 	CertificateIssuer string `cbor:"is"`
 	ID                string `json:"ci"`
+	TotalSerialDoses  int    `cbor:"sd"`
+	DoseNumber        int    `cbor:"dn"`
 }
 
 func (v *Vaccination) IsComplete() bool {
