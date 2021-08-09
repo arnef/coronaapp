@@ -2,6 +2,7 @@ package viewmodel
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/arnef/coronaapp/app/covpass"
@@ -160,4 +161,11 @@ func (c *Cert) Icon() string {
 
 	// fallback
 	return "logo.svg"
+}
+
+func CleanID(id string) string {
+	if strings.HasPrefix(strings.ToLower(id), "urn:uvci:") {
+		return id[9:]
+	}
+	return id
 }
