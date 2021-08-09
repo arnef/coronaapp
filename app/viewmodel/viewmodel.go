@@ -1,6 +1,8 @@
 package viewmodel
 
 import (
+	"sort"
+
 	"github.com/arnef/coronaapp/app/utils"
 )
 
@@ -45,6 +47,9 @@ func (c *CertList) Append(cert *utils.CoronaCert) {
 		}
 		viewmodelCert.GenerateData()
 		c.certs = append(c.certs, viewmodelCert)
+		sort.Slice(c.certs, func(a, b int) bool {
+			return c.certs[a].ValidUntil().After(c.certs[b].ValidUntil())
+		})
 		c.Size = len(c.certs)
 	}
 }

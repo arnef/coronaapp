@@ -2,7 +2,6 @@ package viewmodel
 
 import (
 	"fmt"
-	"strings"
 
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
@@ -45,7 +44,7 @@ func vaccinationData(vaccination *covpass.Vaccination, rows []*DataRow) []*DataR
 		},
 		{
 			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
-			Subtitle: strings.TrimPrefix(vaccination.ID, "URN:UVCI:"),
+			Subtitle: CleanID(vaccination.ID),
 		},
 	}...)
 }

@@ -1,8 +1,6 @@
 package viewmodel
 
 import (
-	"strings"
-
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
 	"github.com/leonelquinteros/gotext"
@@ -48,7 +46,7 @@ func testData(test *covpass.Test, rows []*DataRow) []*DataRow {
 		},
 		{
 			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
-			Subtitle: strings.TrimPrefix(test.ID, "URN:UVCI:"),
+			Subtitle: CleanID(test.ID),
 		},
 	}...)
 }
