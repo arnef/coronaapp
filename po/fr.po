@@ -36,7 +36,7 @@ msgstr "Vaccin"
 
 #: app/viewmodel/recovery.go:18
 msgid "Date of first positive test result (YYYY-MM-DD)"
-msgstr "Date du résultat du premier test positif (YYYY-MM-DD)"
+msgstr "Date du résultat du premier test positif (AAAA-MM-JJ)"
 
 #: app/viewmodel/test.go:18
 msgid "Type of test"
@@ -44,7 +44,7 @@ msgstr "Type de test"
 
 #: app/viewmodel/test.go:30
 msgid "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
-msgstr "Date et heure du prélèvement (YYYY-MM-DD, HH:MM)"
+msgstr "Date et heure du prélèvement (AAAA-MM-JJ, HH:MM)"
 
 #: app/viewmodel/test.go:26
 msgid "Test manufacturer"
@@ -69,7 +69,7 @@ msgstr "Supprimer le certificat ?"
 
 #: main.go:66
 msgid "Cancel"
-msgstr "Annulation"
+msgstr "Annuler"
 
 #: app/viewmodel/vaccination.go:47 app/viewmodel/recovery.go:38
 #: app/viewmodel/test.go:50
@@ -94,7 +94,7 @@ msgstr "Numéro dans une série de vaccinations/doses"
 
 #: app/viewmodel/vaccination.go:39
 msgid "Member State of vaccination"
-msgstr "Etat Membre de vaccination"
+msgstr "Etat Membre de la vaccination"
 
 #: app/viewmodel/test.go:22
 msgid "Test name"
@@ -114,7 +114,7 @@ msgstr "Nom, prénom"
 
 #: app/viewmodel/cert.go:36
 msgid "Date of birth (YYYY-MM-DD)"
-msgstr "Date de naissance (YYYY-MM-DD)"
+msgstr "Date de naissance (AAAA-MM-JJ)"
 
 #: app/viewmodel/cert.go:68
 msgid "PCR test"
@@ -123,7 +123,7 @@ msgstr "Test PCR"
 #: app/viewmodel/cert.go:94
 #, c-format
 msgid "Valid until %s"
-msgstr "Valide jusqu'à %s"
+msgstr "Valide jusqu'au %s"
 
 #: app/state.go:23
 msgid "You currently do not have saved any digital EU-COVID certificates."
@@ -131,7 +131,7 @@ msgstr "Vous n'avez sauvegardé aucun certificat numérique COVID-UE."
 
 #: app/viewmodel/vaccination.go:35
 msgid "Date of vaccination (YYYY-MM-DD)"
-msgstr "Date de vaccination (YYYY-MM-DD)"
+msgstr "Date de vaccination (AAAA-MM-JJ)"
 
 #: app/viewmodel/vaccination.go:43 app/viewmodel/recovery.go:26
 #: app/viewmodel/test.go:46
@@ -148,15 +148,15 @@ msgstr "Supprimer"
 
 #: app/viewmodel/recovery.go:30
 msgid "Certificate valid from (YYYY-MM-DD)"
-msgstr "Certificat valide à partir de (RRRR-MM-DD)"
+msgstr "Certificat valide à partir du (AAAA-MM-JJ)"
 
 #: app/viewmodel/recovery.go:34
 msgid ""
 "Certificate valid until (no more than 180 days after the date of first "
 "positive test result)(YYYY-MM-DD)"
 msgstr ""
-"Certificat valide jusqu'à (pas plus de 180 jours au delà de la date du premier"
-"résultat de test positif)(YYYY-MM-DD)"
+"Certificat valide jusqu'au (pas plus de 180 jours au delà de la date du premier"
+"résultat de test positif)(AAAA-MM-JJ)"
 
 #: app/viewmodel/cert.go:70
 msgid "Rapid antigen test"
