@@ -1,0 +1,164 @@
+# traducción al español de Corona APP .
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: \n"
+"Report-Msgid-Bugs-To: EMAIL\n"
+"POT-Creation-Date: 2021-07-28 23:39+0200\n"
+"PO-Revision-Date: 2021-08-23 00:20+0200\n"
+"Language-Team: UBports spanish team\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Generator: Poedit 2.4.2\n"
+"Last-Translator: Josu\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"Language: es\n"
+
+#: app/viewmodel/vaccination.go:23
+msgid "Vaccine Type"
+msgstr "Tipo de vacuna"
+
+#: app/viewmodel/cert.go:59
+msgid "Vaccination certificate"
+msgstr "Certificado de vacunación"
+
+#: app/viewmodel/cert.go:81
+msgid "Full vaccination protection"
+msgstr "Protección de vacunación completa"
+
+#: app/viewmodel/vaccination.go:19
+msgid "Vaccine"
+msgstr "Vacuna"
+
+#: app/viewmodel/recovery.go:18
+msgid "Date of first positive test result (YYYY-MM-DD)"
+msgstr "Fecha del primer test con resultado positivo (AAAA-MM_DD)"
+
+#: app/viewmodel/test.go:18
+msgid "Type of test"
+msgstr "Tipo de test"
+
+#: app/viewmodel/test.go:30
+msgid "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"
+msgstr "Fecha y hora de la recogida de la muestra (AAAA-MM-DD, HH:MM)"
+
+#: app/viewmodel/test.go:26
+msgid "Test manufacturer"
+msgstr "Fabricante del test"
+
+#: app/viewmodel/test.go:38
+msgid "Testing centre or facility"
+msgstr "Centro o instalación de pruebas"
+
+#: app/viewmodel/cert.go:62
+msgid "Recovery certificate"
+msgstr "Certificado de recuperación"
+
+#: app/viewmodel/cert.go:85
+#, c-format
+msgid "Full protection as of %s"
+msgstr "Protección completa a partir de: %s"
+
+#: main.go:65
+msgid "Delete certificate?"
+msgstr "¿Eliminar certificado?"
+
+#: main.go:66
+msgid "Cancel"
+msgstr "Cancelar"
+
+#: app/viewmodel/vaccination.go:47 app/viewmodel/recovery.go:38
+#: app/viewmodel/test.go:50
+msgid "Unique certificate identifier"
+msgstr "Identificador único del certificado"
+
+#: app/viewmodel/recovery.go:14
+msgid "Disease or agent the citizen has recovered from"
+msgstr "Enfermedad o agente del que se ha recuperado"
+
+#: app/viewmodel/cert.go:88
+msgid "Incomplete vaccination protection"
+msgstr "Protección de la vacunación incompleta"
+
+#: app/viewmodel/vaccination.go:15 app/viewmodel/test.go:14
+msgid "Disease or agent targeted"
+msgstr "Enfermedad o agente al que se dirige"
+
+#: app/viewmodel/vaccination.go:31
+msgid "Number in a series of vaccinations/doses"
+msgstr "Número de vacunas / dosis"
+
+#: app/viewmodel/vaccination.go:39
+msgid "Member State of vaccination"
+msgstr "Estado miembro de vacunación"
+
+#: app/viewmodel/test.go:22
+msgid "Test name"
+msgstr "Nombre del test"
+
+#: app/viewmodel/vaccination.go:27
+msgid "Manufacturer"
+msgstr "Fabricante"
+
+#: app/viewmodel/test.go:34
+msgid "Test result"
+msgstr "Resultado del test"
+
+#: app/viewmodel/cert.go:32
+msgid "Name, first name"
+msgstr "Apellidos, nombre"
+
+#: app/viewmodel/cert.go:36
+msgid "Date of birth (YYYY-MM-DD)"
+msgstr "Fecha de nacimiento (AAAA-MM-DD)"
+
+#: app/viewmodel/cert.go:68
+msgid "PCR test"
+msgstr "Test PCR"
+
+#: app/viewmodel/cert.go:94
+#, c-format
+msgid "Valid until %s"
+msgstr "Válido hasta %s"
+
+#: app/state.go:23
+msgid "You currently do not have saved any digital EU-COVID certificates."
+msgstr ""
+"Actualmente no tiene guardado ningún certificado digital EU-COVID."
+
+#: app/viewmodel/vaccination.go:35
+msgid "Date of vaccination (YYYY-MM-DD)"
+msgstr "Fecha de vacunación (AAAA-MM-DD)"
+
+#: app/viewmodel/vaccination.go:43 app/viewmodel/recovery.go:26
+#: app/viewmodel/test.go:46
+msgid "Certificate issuer"
+msgstr "Emisor del certificado"
+
+#: app/viewmodel/recovery.go:22 app/viewmodel/test.go:42
+msgid "Member State of test"
+msgstr "Estado miembro del test"
+
+#: main.go:64
+msgid "Delete"
+msgstr "Borrar"
+
+#: app/viewmodel/recovery.go:30
+msgid "Certificate valid from (YYYY-MM-DD)"
+msgstr "Certiicado válido desde (AAAA-MM-DD)"
+
+#: app/viewmodel/recovery.go:34
+msgid ""
+"Certificate valid until (no more than 180 days after the date of first "
+"positive test result)(YYYY-MM-DD)"
+msgstr ""
+"Certificado válido hasta (no mas de 180 días después del primer test "
+"con resultado positivo) (AAAA-MM-DD)"
+
+#: app/viewmodel/cert.go:70
+msgid "Rapid antigen test"
+msgstr "Test rápido de antígenos"
