@@ -17,14 +17,12 @@
 package main
 
 import (
-	"fmt"
 	"os"
 
 	"github.com/arnef/coronaapp/app"
 	"github.com/arnef/coronaapp/app/provider"
 	"github.com/arnef/coronaapp/app/scanner"
 	"github.com/arnef/coronaapp/app/storage"
-	"github.com/arnef/coronaapp/app/utils"
 	"github.com/leonelquinteros/gotext"
 	"github.com/nanu-c/qml-go"
 
@@ -64,17 +62,8 @@ func run() error {
 	context.SetVar("R", &r)
 
 	win := component.CreateWindow(nil)
+	scanner := scanner.New(win)
 
-	scanner := scanner.New(win, func(s string) {
-		cert, err := utils.CertFromString(s)
-		if err != nil {
-			// TODO display error message
-			log.Error(err)
-			return
-		}
-		go storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
-		state.AppendCert(cert)
-	})
 	context.SetVar("scanner", scanner)
 
 	win.Show()

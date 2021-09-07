@@ -1,12 +1,18 @@
 import QtQuick 2.12
-import QtMultimedia 5.4
+import QtMultimedia 5.0
 import Ubuntu.Components 1.3
 
 Page {
-    id: page
+    id: self
     property bool active: false
-    signal done()
-    
+
+    property var result: scanner.text
+
+    onResultChanged: {
+        self.checkValue(self.result)
+    }
+
+    signal codeParsed(string value)
 
     header: PageHeader {
         title: "Scan..."
@@ -17,18 +23,25 @@ Page {
                     text: "toggle"
                     iconName: "edit-paste"
                     onTriggered: {
-                        scanner.decode(Clipboard.data.text)
+                        self.checkValue(Clipboard.data.text)
                     }
                 }
             ]
         }
     }
 
+    function checkValue(text) {
+        if (text.startsWith("HC1")) {
+            self.codeParsed(text);
+        }
+    }
+
+
     Timer {
         id: captureTimer
-        interval: 750
+        interval: 2000
         repeat: true
-        running: active && !scanner.hasResult
+        running: active
         onTriggered: {
             scanner.scan(crosshair.x, crosshair.y, crosshair.width, crosshair.height)
         }
@@ -36,43 +49,38 @@ Page {
             if (!running) {
                 camera.flash.mode = Camera.FlashOff
                 camera.stop()
-                if (scanner.hasResult) {
-                    page.done()
-                }
             } else {
-                camera.start()
+                camera.startAndConfigure()
             }
         }
     }
 
     Camera {
         id: camera
-        captureMode: Camera.CaptureViewfinder
-        focus {
-            focusMode: Camera.FocusContinuous
-            focusPointMode: Camera.FocusPointCustom
-            customFocusPoint: Qt.point(crosshair.x + crosshair.height/2, crosshair.y + crosshair.width/2)
-        }
-        imageProcessing {
-            contrast: 0.66
-            saturation: -0.5
+        focus.focusMode: Camera.FocusContinuous
+        focus.focusPointMode: Camera.FocusPointAuto
+
+        function startAndConfigure() {
+            start();
+            focus.focusMode = Camera.FocusContinuous
+            focus.focusPointMode = Camera.FocusPointAuto
         }
     }
 
     VideoOutput {
         source: camera
         visible: active
-        focus: active // to receive focus and capture key events when visible
+        focus: visible
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-        autoOrientation: true
+        orientation: -90
 
         Rectangle {
             id: crosshair
             anchors.centerIn: parent
-            width: parent.width * .6
-            height: parent.width * .6
-            opacity: .75
+            width: parent.width * .8
+            height: parent.width * .8
+            opacity: .5
             color: "transparent"
             border {
                 width: units.gu(1) / 4
@@ -89,7 +97,7 @@ Page {
             anchors.horizontalCenter: parent.horizontalCenter
             anchors.bottomMargin: units.gu(2)
             color: UbuntuColors.graphite
-            onClicked: {   
+            onClicked: {
                 camera.flash.mode = (camera.flash.mode === Camera.FlashVideoLight ? Camera.FlashOff : Camera.FlashVideoLight)
             }
         }

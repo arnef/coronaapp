@@ -3,7 +3,6 @@ package scanner
 import (
 	"image"
 	"sync"
-	"time"
 
 	"github.com/makiuchi-d/gozxing"
 	"github.com/makiuchi-d/gozxing/qrcode"
@@ -12,48 +11,23 @@ import (
 	log "github.com/sirupsen/logrus"
 )
 
-type OnResultHandler = func(string)
-
 type Scanner interface {
-	Wait()
 	Scan(x, y, width, height int)
-	Decode(val string)
 }
 
-func New(win *qml.Window, onResultHandler OnResultHandler) Scanner {
+func New(win *qml.Window) Scanner {
 	return &scanner{
-		win:             win,
-		result:          make(chan string),
-		mutex:           &sync.Mutex{},
-		onResultHandler: onResultHandler,
+		win:   win,
+		mutex: &sync.Mutex{},
 	}
 }
 
 type scanner struct {
-	Root            qml.Object
-	win             *qml.Window
-	mutex           *sync.Mutex
-	result          chan (string)
-	onResultHandler OnResultHandler
-	HasResult       bool
-	Decoding        bool
+	Root  qml.Object
+	win   *qml.Window
+	mutex *sync.Mutex
+	Text  string
 }
-
-func (s *scanner) Wait() {
-	log.Debugln("scanner.Wait")
-	s.HasResult = false
-
-	go func() {
-		data := <-s.result
-		s.HasResult = true
-		qml.Changed(s, &s.HasResult)
-		if s.onResultHandler != nil {
-			s.onResultHandler(data)
-		}
-		log.Debugln("scanner.Done")
-	}()
-}
-
 type SubImage interface {
 	SubImage(r image.Rectangle) image.Image
 }
@@ -62,10 +36,13 @@ func (s *scanner) Scan(x, y, width, height int) {
 
 	go func() {
 		log.Debugln("scanner.Scan")
+		if s.win == nil {
+			return
+		}
 		// lock while reader is decoding
 		s.mutex.Lock()
-		defer s.mutex.Unlock()
 		img, ok := s.win.Snapshot().(SubImage)
+		s.mutex.Unlock()
 		if ok {
 			subImg := img.SubImage(image.Rect(x, y, x+width, y+height))
 			reader := qrcode.NewQRCodeReader()
@@ -80,15 +57,17 @@ func (s *scanner) Scan(x, y, width, height int) {
 				return
 			}
 			if result != nil {
-				s.Decode(result.String())
+
+				s.done(result.String())
 			}
 		}
 
 	}()
 }
 
-func (s *scanner) Decode(val string) {
-	log.Debugln("scanner.Handle", val)
-	time.Sleep(100 * time.Millisecond)
-	s.result <- val
+func (s *scanner) done(val string) {
+	s.mutex.Lock()
+	s.Text = val
+	qml.Changed(s, &s.Text)
+	s.mutex.Unlock()
 }

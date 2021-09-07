@@ -18,3 +18,12 @@ func (s *State) RemoveCert(id string) {
 	storage.RmFile(fmt.Sprintf("%s.pem", id))
 	qml.Changed(s, &s.Certs)
 }
+
+func (s *State) AppendAndPersist(cert string) {
+	c, err := utils.CertFromString(cert)
+	if err != nil {
+		return
+	}
+	storage.WriteFile(fmt.Sprintf("%s.pem", c.ID), []byte(c.Raw))
+	s.AppendCert(c)
+}
