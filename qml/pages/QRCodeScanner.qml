@@ -15,7 +15,7 @@ Page {
     signal codeParsed(string value)
 
     header: PageHeader {
-        title: "Scan..."
+        title: R.scan
         trailingActionBar {
             numberOfSlots: 1
             actions: [

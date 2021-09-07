@@ -45,6 +45,7 @@ func run() error {
 		Delete:     gotext.Get("Delete"),
 		DeleteCert: gotext.Get("Delete certificate?"),
 		Cancel:     gotext.Get("Cancel"),
+		Scan:       gotext.Get("Scan..."),
 	}
 
 	engine := qml.NewEngine()
@@ -76,4 +77,5 @@ type R struct {
 	Delete     string
 	DeleteCert string
 	Cancel     string
+	Scan       string
 }

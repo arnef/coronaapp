@@ -4,6 +4,7 @@ go 1.13
 
 require (
 	github.com/fxamacker/cbor/v2 v2.3.0
+	github.com/gosexy/gettext v0.0.0-20160830220431-74466a0a0c4a // indirect
 	github.com/jessevdk/go-flags v1.5.0 // indirect
 	github.com/leonelquinteros/gotext v1.5.0
 	github.com/makiuchi-d/gozxing v0.0.1
