@@ -1,8 +1,6 @@
 package viewmodel
 
 import (
-	"strings"
-
 	"github.com/arnef/coronaapp/app/covpass"
 	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
 	"github.com/leonelquinteros/gotext"
@@ -28,7 +26,7 @@ func testData(test *covpass.Test, rows []*DataRow) []*DataRow {
 		},
 		{
 			Title:    intl(gotext.Get("Date and time of the sample collection (YYYY-MM-DD, HH:MM)"), "Date and time of the sample collection (YYYY-MM-DD, HH:MM)"),
-			Subtitle: test.SampleCollection.Format("2006-02-01, 15:04"),
+			Subtitle: test.SampleCollection.Format("2006-01-02, 15:04"),
 		},
 		{
 			Title:    intl(gotext.Get("Test result"), "Test result"),
@@ -48,7 +46,7 @@ func testData(test *covpass.Test, rows []*DataRow) []*DataRow {
 		},
 		{
 			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
-			Subtitle: strings.TrimPrefix(test.ID, "URN:UVCI:"),
+			Subtitle: CleanID(test.ID),
 		},
 	}...)
 }

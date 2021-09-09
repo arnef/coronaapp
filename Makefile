@@ -17,3 +17,6 @@ armhf: mo
 
 arm64: mo
 	clickable clean --arch arm64; clickable build --arch arm64
+
+release: clean all
+	clickable publish --arch armhf; clickable publish --arch arm64

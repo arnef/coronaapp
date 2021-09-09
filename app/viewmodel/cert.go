@@ -2,6 +2,7 @@ package viewmodel
 
 import (
 	"fmt"
+	"strings"
 	"time"
 
 	"github.com/arnef/coronaapp/app/covpass"
@@ -13,10 +14,10 @@ type Cert struct {
 	FamilyName  string
 	GivenName   string
 	DateOfBirth string
-	Data        *DataRows
 	vaccination *covpass.Vaccination
 	recovery    *covpass.Recovery
 	test        *covpass.Test
+	Data        *DataRows
 }
 
 func intl(val string, key string) string {
@@ -24,6 +25,34 @@ func intl(val string, key string) string {
 		return fmt.Sprintf("%s / %s", val, key)
 	}
 	return val
+}
+
+func (c *Cert) ValidUntil() time.Time {
+	validUntil := time.Now()
+
+	if c.recovery != nil {
+		if vu, err := covpass.ParseDay(c.recovery.ValidUntil); err == nil {
+
+			validUntil = vu
+		}
+	} else if c.test != nil {
+		if c.test.Type() == covpass.NegativePCRTestCertType {
+			validUntil = c.test.SampleCollection.AddDate(0, 0, 2)
+		} else if c.test.Type() == covpass.NegativeAntigenTestCertType {
+			validUntil = c.test.SampleCollection.AddDate(0, 0, 1)
+		}
+	} else if c.vaccination != nil {
+		if occ, err := covpass.ParseDay(c.vaccination.Occurence); err == nil {
+			if c.vaccination.Type() == covpass.VaccinationFullProtectionCertType {
+
+				validUntil = occ.AddDate(1, 0, 0)
+			} else {
+				validUntil = occ.AddDate(0, 0, 14)
+			}
+		}
+	}
+
+	return validUntil
 }
 
 func (c *Cert) GenerateData() {
@@ -82,7 +111,7 @@ func (c *Cert) Title() string {
 		case covpass.VaccinationCompleteCertType:
 			occurence, err := covpass.ParseDay(c.vaccination.Occurence)
 			if err == nil {
-				return gotext.Get("Full protection as of %s", occurence.Add(14*24*time.Hour).Format("02.01.2006"))
+				return gotext.Get("Full protection as of %s", occurence.Add(15*24*time.Hour).Format("02.01.2006"))
 			}
 		default:
 			return gotext.Get("Incomplete vaccination protection")
@@ -132,4 +161,11 @@ func (c *Cert) Icon() string {
 
 	// fallback
 	return "logo.svg"
+}
+
+func CleanID(id string) string {
+	if strings.HasPrefix(strings.ToLower(id), "urn:uvci:") {
+		return id[9:]
+	}
+	return id
 }

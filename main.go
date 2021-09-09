@@ -17,17 +17,13 @@
 package main
 
 import (
-	"fmt"
-	"image"
 	"os"
 
 	"github.com/arnef/coronaapp/app"
 	"github.com/arnef/coronaapp/app/provider"
+	"github.com/arnef/coronaapp/app/scanner"
 	"github.com/arnef/coronaapp/app/storage"
-	"github.com/arnef/coronaapp/app/utils"
 	"github.com/leonelquinteros/gotext"
-	"github.com/makiuchi-d/gozxing"
-	"github.com/makiuchi-d/gozxing/qrcode"
 	"github.com/nanu-c/qml-go"
 
 	log "github.com/sirupsen/logrus"
@@ -36,8 +32,7 @@ import (
 func main() {
 	// TODO set by build envs
 	// log.SetLevel(log.DebugLevel)
-
-	gotext.Configure("./locales", os.Getenv("LANGUAGE"), "default")
+	log.SetReportCaller(true)
 
 	err := qml.Run(run)
 	if err != nil {
@@ -46,47 +41,32 @@ func main() {
 }
 
 func run() error {
-	engine := qml.NewEngine()
-
-	component, err := engine.LoadFile("qml/Main.qml")
-	if err != nil {
-		return err
-	}
-	state := app.Init()
-
-	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
-	scanner := QRScanner{
-		reader: qrcode.NewQRCodeReader(),
-	}
-	context := engine.Context()
-
+	gotext.Configure("./locales", os.Getenv("LANGUAGE"), "default")
 	r := R{
 		Delete:     gotext.Get("Delete"),
 		DeleteCert: gotext.Get("Delete certificate?"),
 		Cancel:     gotext.Get("Cancel"),
+		Scan:       gotext.Get("Scan..."),
 	}
 
-	context.SetVar("scanner", &scanner)
+	engine := qml.NewEngine()
+	context := engine.Context()
+	component, err := engine.LoadFile("qml/Main.qml")
+	if err != nil {
+		return err
+	}
+
+	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
+
+	state := app.Init()
+
 	context.SetVar("myapp", &state)
 	context.SetVar("R", &r)
 
 	win := component.CreateWindow(nil)
+	scanner := scanner.New(win)
 
-	state.Root = win.Root()
-
-	scanner.Win = win
-	scanner.Scanned = func(s string) {
-		log.Debugln("scanned", s)
-		cert, err := utils.CertFromString(s)
-
-		if err != nil {
-			log.Errorln(err)
-		} else {
-			storage.WriteFile(fmt.Sprintf("%s.pem", cert.ID), []byte(cert.Raw))
-			state.AppendCert(cert)
-		}
-
-	}
+	context.SetVar("scanner", scanner)
 
 	win.Show()
 	win.Wait()
@@ -98,44 +78,5 @@ type R struct {
 	Delete     string
 	DeleteCert string
 	Cancel     string
-}
-
-type QRScanner struct {
-	Root      qml.Object
-	Win       *qml.Window
-	HasResult bool
-	reader    gozxing.Reader
-	Scanned   func(string)
-	running   bool
-}
-
-func (qr *QRScanner) Scan(x, y, width, height int) {
-	if qr.Win != nil {
-		go func() {
-			if !qr.running {
-				log.Debugln("scan screen for qr", x, y, width, height)
-				qr.running = true
-				img := qr.Win.Snapshot()
-				my_sub_image := img.(interface {
-					SubImage(r image.Rectangle) image.Image
-				}).SubImage(image.Rect(x, y, x+width, y+height))
-				// prepare BinaryBitmap
-				bmp, _ := gozxing.NewBinaryBitmapFromImage(my_sub_image)
-				// decode image
-				result, _ := qr.reader.Decode(bmp, nil)
-				if result != nil {
-					qr.HandleString(result.String())
-				}
-				qr.running = false
-			}
-		}()
-	}
-}
-
-func (qr *QRScanner) HandleString(val string) {
-	qr.HasResult = true
-	qml.Changed(qr, &qr.HasResult)
-	qr.Scanned(val)
-	qr.HasResult = false
-	qml.Changed(qr, &qr.HasResult)
+	Scan       string
 }

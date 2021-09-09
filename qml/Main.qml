@@ -23,14 +23,13 @@ MainView {
     id: root
     objectName: 'mainView'
     applicationName: 'coronaapp.de.arnef'
-    automaticOrientation: true
 
     width: units.gu(45)
     height: units.gu(75)
 
     property var _doScan: false
 
-    
+
     AdaptivePageLayout {
         id: pageStack
         anchors.fill: parent
@@ -49,7 +48,7 @@ MainView {
             onNavigate: function(pageName, pageParams) {
                 if (pageName === "cert_details") {
                     certListPage.pageStack.addPageToNextColumn(certListPage, certDetailsPage, { cert: pageParams })
-                }   
+                }
             }
         }
 
@@ -57,8 +56,8 @@ MainView {
             id: certDetailsPage
         }
     }
-        
-        
+
+
     BottomEdge {
         id: bottomEdge
         height: parent.height
@@ -66,8 +65,9 @@ MainView {
             active: _doScan
             width: bottomEdge.width
             height: bottomEdge.height
-            onDone: {
-                bottomEdge.collapse()
+            onCodeParsed: function(code) {
+              bottomEdge.collapse()
+              myapp.appendAndPersist(code);
             }
         }
         onCollapseCompleted: {
