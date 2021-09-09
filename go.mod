@@ -3,6 +3,7 @@ module github.com/arnef/coronaapp
 go 1.13
 
 require (
+	github.com/disintegration/imaging v1.6.2 // indirect
 	github.com/fxamacker/cbor/v2 v2.3.0
 	github.com/gosexy/gettext v0.0.0-20160830220431-74466a0a0c4a // indirect
 	github.com/jessevdk/go-flags v1.5.0 // indirect

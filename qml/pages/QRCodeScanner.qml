@@ -1,5 +1,5 @@
 import QtQuick 2.12
-import QtMultimedia 5.0
+import QtMultimedia 5.4
 import Ubuntu.Components 1.3
 
 Page {
@@ -58,12 +58,12 @@ Page {
     Camera {
         id: camera
         focus.focusMode: Camera.FocusContinuous
-        focus.focusPointMode: Camera.FocusPointAuto
+        focus.focusPointMode: Camera.FocusPointCenter
 
         function startAndConfigure() {
             start();
             focus.focusMode = Camera.FocusContinuous
-            focus.focusPointMode = Camera.FocusPointAuto
+            focus.focusPointMode = Camera.FocusPointCenter
         }
     }
 
@@ -73,7 +73,7 @@ Page {
         focus: visible
         anchors.fill: parent
         fillMode: Image.PreserveAspectCrop
-        orientation: -90
+        autoOrientation: true
 
         Rectangle {
             id: crosshair
