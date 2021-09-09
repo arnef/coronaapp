@@ -50,15 +50,15 @@ func run() error {
 	}
 
 	engine := qml.NewEngine()
-	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
-
-	state := app.Init()
 	context := engine.Context()
-
 	component, err := engine.LoadFile("qml/Main.qml")
 	if err != nil {
 		return err
 	}
+
+	engine.AddImageProvider(storage.AppName, provider.ImageProvider)
+
+	state := app.Init()
 
 	context.SetVar("myapp", &state)
 	context.SetVar("R", &r)
