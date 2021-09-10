@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: EMAIL\n"
 "POT-Creation-Date: 2021-09-07 11:40+0200\n"
-"PO-Revision-Date: 2021-09-10 13:26+0200\n"
+"PO-Revision-Date: 2021-09-10 14:31+0200\n"
 "Language-Team: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -20,12 +20,12 @@ msgstr ""
 
 #: app/viewmodel/vaccination.go:38
 msgid "Member State of vaccination"
-msgstr "Stato membro della vaccinazione"
+msgstr "Stato in cui è stata eseguita la vaccinazione"
 
 #: app/viewmodel/vaccination.go:46 app/viewmodel/recovery.go:36
 #: app/viewmodel/test.go:48
 msgid "Unique certificate identifier"
-msgstr "Identificatore univoco del certificato"
+msgstr "Identificativo univoco del certificato"
 
 #: app/viewmodel/recovery.go:12
 msgid "Disease or agent the citizen has recovered from"
@@ -58,11 +58,11 @@ msgstr "Nome del test"
 
 #: app/viewmodel/vaccination.go:18
 msgid "Vaccine"
-msgstr "Vaccino"
+msgstr "Tipo di vaccino"
 
 #: main.go:48
 msgid "Scan..."
-msgstr "Scan..."
+msgstr "Scansione..."
 
 #: app/viewmodel/vaccination.go:34
 msgid "Date of vaccination (YYYY-MM-DD)"
@@ -91,7 +91,7 @@ msgstr "Tipo di vaccino"
 
 #: app/viewmodel/vaccination.go:30
 msgid "Number in a series of vaccinations/doses"
-msgstr "Numero in una serie di vaccinazioni/dosi"
+msgstr "Numero dose di vaccinazione/dosi previste"
 
 #: app/viewmodel/recovery.go:16
 msgid "Date of first positive test result (YYYY-MM-DD)"
@@ -165,4 +165,4 @@ msgstr "Risultato del test"
 
 #: app/viewmodel/recovery.go:20 app/viewmodel/test.go:40
 msgid "Member State of test"
-msgstr "Stato membro del test"
+msgstr "Stato in cui è stato eseguito il test"
