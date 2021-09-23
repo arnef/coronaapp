@@ -2,7 +2,7 @@ import QtQuick 2.12
 import Ubuntu.Components 1.3
 
 Rectangle {
-    color: cert.color()
+    color: cert.color
     width: parent.width
     height: layout.implicitHeight
 
@@ -11,7 +11,7 @@ Rectangle {
     property var cert
 
     // a little dirty but it works for me
-    property var _textColor: cert.color() == "#d2e7fe" ? "black" : "white"
+    // property var _textColor: cert.color == "#d2e7fe" ? "black" : "white"
 
     TapHandler {
         onTapped: {
@@ -28,18 +28,18 @@ Rectangle {
             Image {
                 width: units.gu(4)
                 height: units.gu(4)
-                source: "../../assets/" + cert.icon()
+                source: "../../assets/" + cert.icon
             }
             Column {
                 leftPadding: units.gu(2)
                 Label {
-                    text: cert.type()
+                    text: cert.title
                     textSize: Label.Large
-                    color: _textColor
+                    color: cert.textColor
                 }
                 Label {
-                    text: cert.title()
-                    color: _textColor
+                    text: cert.subTitle
+                    color: cert.textColor
                 }
             }
         }
@@ -60,8 +60,8 @@ Rectangle {
             anchors.right: parent.right
             Label {
                 id: name
-                text: cert.givenName + " " + cert.familyName
-                color: _textColor
+                text: cert.fullName
+                color: cert.textColor
                 textSize: Label.Large
             }
             Icon {
@@ -69,7 +69,7 @@ Rectangle {
                 anchors.right: parent.right
                 name: "go-next"
                 width: units.gu(2)
-                color: _textColor
+                color: cert.textColor
             }
         }
     }

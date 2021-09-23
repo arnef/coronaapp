@@ -3,48 +3,44 @@ package viewmodel
 import (
 	"fmt"
 
-	"github.com/arnef/coronaapp/app/covpass"
-	"github.com/arnef/coronaapp/app/storage/euvaluerepo"
+	"github.com/arnef/covcert/pkg/covcert"
 	"github.com/leonelquinteros/gotext"
 )
 
-func vaccinationData(vaccination *covpass.Vaccination, rows []*DataRow) []*DataRow {
+func vaccinationData(vaccination covcert.VaccinationCert, rows []*DataRow) []*DataRow {
+	doses, total := vaccination.Vaccinations()
 	return append(rows, []*DataRow{
 		{
 			Title:    intl(gotext.Get("Disease or agent targeted"), "Disease or agent targeted"),
-			Subtitle: euvaluerepo.GetDiseaseAgentName(vaccination.TargetDisease),
+			Subtitle: vaccination.TargetDisease(),
 		},
 		{
 			Title:    intl(gotext.Get("Vaccine"), "Vaccine"),
-			Subtitle: euvaluerepo.GetProductName(vaccination.Product),
+			Subtitle: vaccination.Vaccine(),
 		},
 		{
 			Title:    intl(gotext.Get("Vaccine Type"), "Vaccine Type"),
-			Subtitle: euvaluerepo.GetProphylaxisName(vaccination.VaccineCode),
+			Subtitle: vaccination.VaccineType(),
 		},
 		{
 			Title:    intl(gotext.Get("Manufacturer"), "Manufacturer"),
-			Subtitle: euvaluerepo.GetManufacturerName(vaccination.Manufacturer),
+			Subtitle: vaccination.Manufacturer(),
 		},
 		{
 			Title:    intl(gotext.Get("Number in a series of vaccinations/doses"), "Number in a series of vaccinations/doses"),
-			Subtitle: fmt.Sprintf("%d/%d", vaccination.DoseNumber, vaccination.TotalSerialDoses),
+			Subtitle: fmt.Sprintf("%d/%d", doses, total),
 		},
 		{
 			Title:    intl(gotext.Get("Date of vaccination (YYYY-MM-DD)"), "Date of vaccination (YYYY-MM-DD)"),
-			Subtitle: vaccination.Occurence,
+			Subtitle: vaccination.DateOfVaccination(),
 		},
 		{
 			Title:    intl(gotext.Get("Member State of vaccination"), "Member State of vaccination"),
-			Subtitle: euvaluerepo.GetCountryName(vaccination.Country),
-		},
-		{
-			Title:    intl(gotext.Get("Certificate issuer"), "Certificate issuer"),
-			Subtitle: vaccination.CertificateIssuer,
+			Subtitle: vaccination.MemberStateOfVaccination(),
 		},
 		{
 			Title:    intl(gotext.Get("Unique certificate identifier"), "Unique certificate identifier"),
-			Subtitle: CleanID(vaccination.ID),
+			Subtitle: vaccination.UniqueIdentifier(),
 		},
 	}...)
 }

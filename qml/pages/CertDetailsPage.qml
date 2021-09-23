@@ -12,7 +12,7 @@ Page {
     
     header: PageHeader {
         id: header
-        title: cert ? (cert.givenName + " " + cert.familyName) : ""
+        title: cert ? (cert.fullName) : ""
         trailingActionBar {
             numberOfSlots: 1
             actions: [
@@ -38,7 +38,7 @@ Page {
         width: parent.width
         height: parent.height - header.height - units.gu(2)
         anchors.top: header.bottom
-        model: cert ? cert.data.size : 0
+        model: cert && cert.data ? cert.data.size : 0
         delegate: ListItem {
             height: row.height
             property var item: cert.data.get(index)

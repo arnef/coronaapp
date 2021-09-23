@@ -4,8 +4,8 @@ import (
 	"strings"
 
 	"github.com/arnef/coronaapp/app/storage"
-	"github.com/arnef/coronaapp/app/utils"
 	"github.com/arnef/coronaapp/app/viewmodel"
+	"github.com/arnef/covcert/pkg/decoder"
 	"github.com/leonelquinteros/gotext"
 	"github.com/nanu-c/qml-go"
 
@@ -32,7 +32,8 @@ func Init() State {
 			if strings.HasSuffix(f, ".pem") {
 				data, err := storage.ReadFile(f)
 				if err == nil {
-					cert, err := utils.CertFromString((string(data)))
+					// cert, err := utils.CertFromString((string(data)))
+					cert, err := decoder.DecodeString(string(data))
 					if err != nil {
 						log.Error(err)
 						continue

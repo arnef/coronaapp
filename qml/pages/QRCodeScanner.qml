@@ -31,7 +31,7 @@ Page {
     }
 
     function checkValue(text) {
-        if (text.startsWith("HC1")) {
+        if (text.startsWith("HC1:") || text.startsWith("NL2:")) {
             self.codeParsed(text);
         }
     }
