@@ -1,5 +1,7 @@
 github.com/IftekherSunny/go_country v0.0.0-20171031050552-fa1977b19cd2 h1:NrVJ6IvNAKInzIegd58ejesi3IpIEdY8VesUxhVhfjA=
 github.com/IftekherSunny/go_country v0.0.0-20171031050552-fa1977b19cd2/go.mod h1:mabp2fNVrqpq9H+oYpW29ZsyP2dCYmxyhHeFuvchppg=
+github.com/arnef/covcert v0.0.0-20210923122402-d260680cc57d h1:Tl7QX8Vbj6xWdZRymijCKO8jSqON0O9YxRRsVUiWSWY=
+github.com/arnef/covcert v0.0.0-20210923122402-d260680cc57d/go.mod h1:z67e7Q/SpfHQtNWgnYOu1TX8AMGZPH4rSA9wa32IGPc=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/disintegration/imaging v1.6.2 h1:w1LecBlG2Lnp8B3jk5zSuNqd7b4DXhcjwek1ei82L+c=
