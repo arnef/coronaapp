@@ -1,4 +1,6 @@
-# Corona App
+# Moved to [Gitlab](https://gitlab.com/arnef/coronaapp)
+
+## Corona App
 
 <img src="https://raw.githubusercontent.com/arnef/coronaapp/main/assets/logo.svg" width="120" />
 
